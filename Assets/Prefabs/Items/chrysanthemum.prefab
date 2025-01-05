@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 938546957004806078}
   - component: {fileID: 1919992827458769192}
   m_Layer: 8
-  m_Name: Item_Flower
+  m_Name: chrysanthemum
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

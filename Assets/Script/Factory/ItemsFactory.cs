@@ -4,7 +4,6 @@ using UnityEngine;
 using System.Reflection;
 using System.Linq;
 
-
 /*Tạo lớp trừu tượng chung cho các chức năng của itemitem*/
 public abstract class ItemAbility
 {
@@ -23,12 +22,17 @@ public class ChrysanthemumAbility : ItemAbility
 }
 
 /*Tạo lớp Factory để quản lý và tạo các đối tượng kế thừa "ItemAbility"*/
-public class AbilityFactory
+public static class AbilityFactory
 {
-    Dictionary<string, Type> abilitiesByName; // Lưu các tên và loại của các chức năngnăng
+    static Dictionary<string, Type> abilitiesByName; // Lưu các tên và loại của các chức năng
+    static bool isInitialized => abilitiesByName != null;
 
-    public AbilityFactory() // PT tìm các lớp con hiện tại, khởi tạo và lưu vào Dictionary
+    static void InitializeFactory() // PT tìm các lớp con hiện tại, khởi tạo và lưu vào Dictionary
     {
+        if (isInitialized)
+        {
+            return;
+        }
         var abilitiesType = Assembly.GetAssembly(typeof(ItemAbility)).GetTypes(). // Tìm các assembly hiện tại của "ItemAbility"
         Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(ItemAbility))); // Nếu như nó là lớp và không phải lớp trừu tượng và lớp con của "ItemAbility"
 
@@ -41,8 +45,9 @@ public class AbilityFactory
         }
     }
 
-    public ItemAbility GetItemAbility(string abilityType) //PT trả về loại chức năng (năng lực)
+    public static ItemAbility GetItemAbility(string abilityType) //PT trả về loại chức năng (năng lực)
     {
+        InitializeFactory();
         if (abilitiesByName.ContainsKey(abilityType))
         {
             Type type = abilitiesByName[abilityType];
@@ -52,8 +57,9 @@ public class AbilityFactory
         return null;
     }
 
-    internal IEnumerable<string> GetItemAbilityName() //PT trả về danh sách tên chức năng của các itemitem
+    internal static IEnumerable<string> GetItemAbilityName() //PT trả về danh sách tên chức năng của các itemitem
     {
+        InitializeFactory();
         return abilitiesByName.Keys;
     }
 }

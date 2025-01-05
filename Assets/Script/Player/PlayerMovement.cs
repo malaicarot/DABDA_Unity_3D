@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -26,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float BotClamp = -30f;
     [SerializeField] float CameraAngleOverride = 0.0f;
 
+    [SerializeField] float deltaTime = 5;
+
     bool isGrounded = true;
 
 
@@ -33,9 +34,10 @@ public class PlayerMovement : MonoBehaviour
     CharacterInput _input;
     CharacterController _controller;
     GameObject _mainCamera;
+    ItemsManager itemsManager;
 
     //cinemachine
-    float _cimenachineTargetPitch;
+    float _cinemachineTargetPitch;
     float _cinemachineTargetYaw;
     private const float threshold = 0.01f;
 
@@ -75,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
         _hasAnimator = TryGetComponent(out _animator);
         _controller = GetComponent<CharacterController>();
         _input = GetComponent<CharacterInput>();
+        itemsManager = FindFirstObjectByType<ItemsManager>();
         _jumpTimeoutDelta = jumpTimeOut;
         _fallTimeoutDelta = fallTimeOut;
 
@@ -88,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
         ProcessMover();
         GroundChecking();
         ProcessJump();
+        itemsManager.SwitchItem(_input.switchItem);
     }
 
     void LateUpdate()
@@ -210,15 +214,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_input.look.sqrMagnitude >= threshold)
         {
-            float deltaTime = 1f;
+            // float deltaTime = 10;
             _cinemachineTargetYaw += _input.look.x * deltaTime;
-            _cimenachineTargetPitch += _input.look.y * deltaTime;
+            _cinemachineTargetPitch += _input.look.y * deltaTime;
         }
         _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
-        _cimenachineTargetPitch = ClampAngle(_cimenachineTargetPitch, BotClamp, TopClamp);
+        _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BotClamp, TopClamp);
 
-        CinemachineTarget.transform.rotation = Quaternion.Euler(_cimenachineTargetPitch + CameraAngleOverride, _cinemachineTargetYaw, 0);
-
+        CinemachineTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride, _cinemachineTargetYaw, 0);
     }
 
     float ClampAngle(float lfAngle, float lfMin, float lfMax)
