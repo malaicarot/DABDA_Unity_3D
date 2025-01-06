@@ -43,7 +43,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7316499348614804590}
   - component: {fileID: 8132380956430970602}
-  - component: {fileID: 2915114309317442784}
   - component: {fileID: 7377442035439623465}
   m_Layer: 0
   m_Name: Camera
@@ -118,14 +117,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &2915114309317442784
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3547719248726669106}
-  m_Enabled: 1
 --- !u!114 &7377442035439623465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,9 +220,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
