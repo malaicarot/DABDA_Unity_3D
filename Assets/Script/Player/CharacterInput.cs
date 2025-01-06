@@ -17,6 +17,7 @@ public class CharacterInput : MonoBehaviour
     public bool analogMovement = true;
 
     public float scalePosition = 0.05f;
+    
 
 
     void Update()

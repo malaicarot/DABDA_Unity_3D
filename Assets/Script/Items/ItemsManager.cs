@@ -6,7 +6,7 @@ public class ItemsManager : MonoBehaviour
     void Start()
     {
         playerInventory = FindFirstObjectByType<PlayerInventory>();
-        playerInventory.EquipItem("chrysanthemum");
+        // playerInventory.EquipItem("chrysanthemum");
     }
 
     public void SwitchItem(int value)

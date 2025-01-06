@@ -1,0 +1,13 @@
+
+using UnityEngine;
+
+public class PooledObject : MonoBehaviour
+{
+    ObjectPool pool;
+    public ObjectPool Pool { get => pool; set => pool = value; }
+
+    public void Release(){
+        pool.ReturnToPool(this);
+    }
+
+}

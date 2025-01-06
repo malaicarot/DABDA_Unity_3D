@@ -7,6 +7,7 @@ using System.Linq;
 /*Tạo lớp trừu tượng chung cho các chức năng của itemitem*/
 public abstract class ItemAbility
 {
+    
     public abstract string itemName { get; }
     public abstract void Proccess();
 }
@@ -14,10 +15,19 @@ public abstract class ItemAbility
 /*Tạo lớp "con" kế thừa "ItemAbility"*/
 public class ChrysanthemumAbility : ItemAbility
 {
-    public override string itemName => "chrysanthemum"; // Ghi đè PT itemName
+    public override string itemName => "Chrysanthemum"; // Ghi đè PT itemName
     public override void Proccess() // Ghi đè PT Proccess
     {
         Debug.Log("Flower is use!");
+    }
+}
+
+public class LampAbility : ItemAbility
+{
+    public override string itemName => "Lamp"; // Ghi đè PT itemName
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        Debug.Log("Lamp is use!");
     }
 }
 

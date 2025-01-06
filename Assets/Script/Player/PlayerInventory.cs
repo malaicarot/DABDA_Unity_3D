@@ -2,10 +2,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class PlayerInventory : MonoBehaviour
+
+enum itemName
+{
+    Chrysanthemum,
+    Lamp
+}
+[RequireComponent(typeof(PooledObject))]
+
+public class PlayerInventory : PooledObject
 {
     [SerializeField] List<GameObject> itemPrefabs;
-    GameObject currentItemPrefabs;
+    MarkPool currentItem;
     ItemAbility currentItemAbility;
     CharacterInput _input;
 
@@ -21,9 +29,10 @@ public class PlayerInventory : MonoBehaviour
         {
             currentItemAbility.Proccess();
         }
+        SwitchItem(_input.switchItem);
     }
 
-    public void EquipItem(string name)
+    void EquipItem(string name)
     {
         currentItemAbility = AbilityFactory.GetItemAbility(name);
 
@@ -31,20 +40,44 @@ public class PlayerInventory : MonoBehaviour
         {
             foreach (var item in itemPrefabs)
             {
-                if(item.name.Equals(name, StringComparison.OrdinalIgnoreCase)){
-                    EquipPrefab(item);
+                if (item.name.Equals(name, StringComparison.OrdinalIgnoreCase))
+                {
+                    EquipPrefab(name);
                     break;
                 }
             }
         }
     }
 
-    void EquipPrefab(GameObject prefab){
-        if(currentItemPrefabs != null){
-            Destroy(currentItemPrefabs);
+    void EquipPrefab(string name)
+    {
+        if (currentItem != null)
+        {
+            currentItem.ItemRelease();
         }
-        currentItemPrefabs = Instantiate(prefab, transform);
-        currentItemPrefabs.transform.localPosition = Vector3.zero;
+        currentItem = ItemsPool.SingleTonItemsPool.GetItem(name, transform.position, Quaternion.identity);
+    }
 
+
+    public void SwitchItem(int value)
+    {
+        switch (value)
+        {
+            case 1:
+                EquipItem(itemName.Chrysanthemum.ToString());
+                break;
+            case 2:
+                EquipItem(itemName.Lamp.ToString());
+                break;
+            case 3:
+                Debug.Log("Item 3");
+                break;
+            case 4:
+                Debug.Log("Item 4");
+                break;
+            case 5:
+                Debug.Log("Item 5");
+                break;
+        }
     }
 }

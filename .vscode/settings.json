@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "DABDA.sln"
+    "dotnet.defaultSolution": "DABDA.sln",
+    "dotnet.preferCSharpExtension": true
 }

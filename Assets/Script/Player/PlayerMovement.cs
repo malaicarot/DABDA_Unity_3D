@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
         _hasAnimator = TryGetComponent(out _animator);
         _controller = GetComponent<CharacterController>();
         _input = GetComponent<CharacterInput>();
-        itemsManager = FindFirstObjectByType<ItemsManager>();
+        // itemsManager = FindFirstObjectByType<ItemsManager>();
         _jumpTimeoutDelta = jumpTimeOut;
         _fallTimeoutDelta = fallTimeOut;
 
@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
         ProcessMover();
         GroundChecking();
         ProcessJump();
-        itemsManager.SwitchItem(_input.switchItem);
+        // itemsManager.SwitchItem(_input.switchItem);
     }
 
     void LateUpdate()
