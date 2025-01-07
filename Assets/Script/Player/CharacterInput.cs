@@ -50,7 +50,7 @@ public class CharacterInput : MonoBehaviour
     }
     public void OnInteract()
     {
-        InteractInput(Input.GetKey(KeyCode.E));
+        InteractInput(Input.GetKeyDown(KeyCode.E));
     }
 
     public void OnMove()

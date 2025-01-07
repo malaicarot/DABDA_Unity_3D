@@ -1,32 +1,28 @@
+using TMPro;
 using UnityEngine;
 
 public class ItemsManager : MonoBehaviour
 {
-    PlayerInventory playerInventory;
+    [SerializeField] TextMeshProUGUI notificationText;
     void Start()
     {
-        playerInventory = FindFirstObjectByType<PlayerInventory>();
-        // playerInventory.EquipItem("chrysanthemum");
+        notificationText.enabled = false;
     }
 
-    public void SwitchItem(int value)
+    void OnTriggerEnter(Collider other)
     {
-        switch(value){
-            case 1:
-            Debug.Log("Item 1");
-            break;
-            case 2:
-            Debug.Log("Item 2");
-            break;
-            case 3:
-            Debug.Log("Item 3");
-            break;
-            case 4:
-            Debug.Log("Item 4");
-            break;
-            case 5:
-            Debug.Log("Item 5");
-            break;
+        if (other.CompareTag("Player"))
+        {
+            notificationText.enabled = true;
         }
     }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            notificationText.enabled = false;
+        }
+    }
+
+
 }

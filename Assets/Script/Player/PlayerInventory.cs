@@ -1,31 +1,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Xml.Serialization;
 
-
-enum itemName
-{
-    Chrysanthemum,
-    Lamp
-}
 [RequireComponent(typeof(PooledObject))]
-
 public class PlayerInventory : PooledObject
 {
-    [SerializeField] List<GameObject> itemPrefabs;
+    [SerializeField] List<string> itemNameList;
+    [SerializeField] Transform hand;
     MarkPool currentItem;
     ItemAbility currentItemAbility;
     CharacterInput _input;
 
-
+    enum ItemName
+    {
+        Chrysanthemum,
+        Lamp
+    }
     void Start()
     {
         _input = GetComponent<CharacterInput>();
-
     }
     void Update()
     {
-        if (currentItemAbility != null && _input.interact)
+        if (currentItemAbility != null && Input.GetKeyDown(KeyCode.Q))
         {
             currentItemAbility.Proccess();
         }
@@ -34,18 +32,38 @@ public class PlayerInventory : PooledObject
 
     void EquipItem(string name)
     {
-        currentItemAbility = AbilityFactory.GetItemAbility(name);
-
-        if (currentItemAbility != null)
+        if (itemNameList.Contains(name))
         {
-            foreach (var item in itemPrefabs)
+            currentItemAbility = AbilityFactory.GetItemAbility(name);
+
+            if (currentItemAbility != null)
             {
-                if (item.name.Equals(name, StringComparison.OrdinalIgnoreCase))
+                foreach (string item in itemNameList)
                 {
-                    EquipPrefab(name);
-                    break;
+                    if (item.Equals(name, StringComparison.OrdinalIgnoreCase))
+                    {
+                        EquipPrefab(name);
+                        // break;
+                    }
                 }
             }
+        }
+        else
+        {
+            if (currentItem != null)
+            {
+                currentItem.ItemRelease();
+
+            }
+        }
+
+    }
+
+    public void AddInventory(string name)
+    {
+        if (!itemNameList.Contains(name))
+        {
+            itemNameList.Add(name);
         }
     }
 
@@ -55,29 +73,47 @@ public class PlayerInventory : PooledObject
         {
             currentItem.ItemRelease();
         }
-        currentItem = ItemsPool.SingleTonItemsPool.GetItem(name, transform.position, Quaternion.identity);
+        currentItem = ItemsPool.SingleTonItemsPool.GetItem(name, hand.position, Quaternion.identity);
+        currentItem.gameObject.GetComponent<BoxCollider>().enabled = false;
+    }
+
+    void SwitchItem(int value)
+    {
+        CheckAndEquip(value);
+        // switch (value)
+        // {
+        //     case 1:
+        //         CheckAndEquip(1);
+        //         break;
+        //     case 2:
+        //         CheckAndEquip(2);
+        //         break;
+        //     case 3:
+        //         CheckAndEquip(3);
+        //         break;
+        //     case 4:
+        //         CheckAndEquip(4);
+        //         break;
+        //     case 5:
+        //         CheckAndEquip(5);
+        //         break;
+        // }
     }
 
 
-    public void SwitchItem(int value)
+    void CheckAndEquip(int value)
     {
-        switch (value)
+        int index = value - 1;
+        if (index >= 0 && index < itemNameList.Count)
         {
-            case 1:
-                EquipItem(itemName.Chrysanthemum.ToString());
-                break;
-            case 2:
-                EquipItem(itemName.Lamp.ToString());
-                break;
-            case 3:
-                Debug.Log("Item 3");
-                break;
-            case 4:
-                Debug.Log("Item 4");
-                break;
-            case 5:
-                Debug.Log("Item 5");
-                break;
+            EquipItem(itemNameList[index]);
+        }
+        else
+        {
+            if (currentItem != null)
+            {
+                currentItem.Release();
+            }
         }
     }
 }
