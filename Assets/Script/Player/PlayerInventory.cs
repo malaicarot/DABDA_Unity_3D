@@ -6,11 +6,12 @@ using System.Xml.Serialization;
 [RequireComponent(typeof(PooledObject))]
 public class PlayerInventory : PooledObject
 {
-    [SerializeField] List<string> itemNameList;
+    // [SerializeField] List<string> itemNameList;
     [SerializeField] Transform hand;
     MarkPool currentItem;
     ItemAbility currentItemAbility;
     CharacterInput _input;
+    InventoryManagers inventoryManagers;
 
     enum ItemName
     {
@@ -20,6 +21,7 @@ public class PlayerInventory : PooledObject
     void Start()
     {
         _input = GetComponent<CharacterInput>();
+        inventoryManagers = FindFirstObjectByType<InventoryManagers>();
     }
     void Update()
     {
@@ -32,13 +34,13 @@ public class PlayerInventory : PooledObject
 
     void EquipItem(string name)
     {
-        if (itemNameList.Contains(name))
+        if (inventoryManagers.itemNameList.Contains(name))
         {
             currentItemAbility = AbilityFactory.GetItemAbility(name);
 
             if (currentItemAbility != null)
             {
-                foreach (string item in itemNameList)
+                foreach (string item in inventoryManagers.itemNameList)
                 {
                     if (item.Equals(name, StringComparison.OrdinalIgnoreCase))
                     {
@@ -53,17 +55,16 @@ public class PlayerInventory : PooledObject
             if (currentItem != null)
             {
                 currentItem.ItemRelease();
-
             }
         }
-
     }
 
     public void AddInventory(string name)
     {
-        if (!itemNameList.Contains(name))
+        if (!inventoryManagers.itemNameList.Contains(name))
         {
-            itemNameList.Add(name);
+            inventoryManagers.itemNameList.Add(name);
+            inventoryManagers.AddItemsInUI();
         }
     }
 
@@ -104,9 +105,9 @@ public class PlayerInventory : PooledObject
     void CheckAndEquip(int value)
     {
         int index = value - 1;
-        if (index >= 0 && index < itemNameList.Count)
+        if (index >= 0 && index < inventoryManagers.itemNameList.Count)
         {
-            EquipItem(itemNameList[index]);
+            EquipItem(inventoryManagers.itemNameList[index]);
         }
         else
         {
