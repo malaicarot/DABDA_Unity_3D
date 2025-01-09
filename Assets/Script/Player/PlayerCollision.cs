@@ -16,7 +16,6 @@ public class PlayerCollision : MonoBehaviour
         if (other.CompareTag("Item") && _input.interact)
         {
             takeItem.AddInventory(other.gameObject.name);
-            Debug.Log(other.gameObject.name);
             Destroy(other.gameObject);
         }
     }

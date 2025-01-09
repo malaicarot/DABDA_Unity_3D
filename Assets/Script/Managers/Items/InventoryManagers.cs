@@ -37,4 +37,24 @@ public class InventoryManagers : MonoBehaviour
             }
         }
     }
+
+    public void TargetItem(string name)
+    {
+        foreach (var item in imageItemsEmptyList)
+        {
+            Transform parent = item.transform.parent;
+            Image parentColor = parent.gameObject.GetComponent<Image>();
+            parentColor.color = Color.black;
+            if (item.sprite != null)
+            {
+                if (item.sprite.name == name)
+                {
+                    parentColor.color = Color.white;
+
+                }
+                
+            }
+
+        }
+    }
 }

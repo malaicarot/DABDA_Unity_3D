@@ -108,6 +108,7 @@ public class PlayerInventory : PooledObject
         if (index >= 0 && index < inventoryManagers.itemNameList.Count)
         {
             EquipItem(inventoryManagers.itemNameList[index]);
+            inventoryManagers.TargetItem(inventoryManagers.itemNameList[index]);
         }
         else
         {
@@ -115,6 +116,7 @@ public class PlayerInventory : PooledObject
             {
                 currentItem.Release();
             }
+            inventoryManagers.TargetItem("");
         }
     }
 }
