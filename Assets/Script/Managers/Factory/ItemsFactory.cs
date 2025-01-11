@@ -7,27 +7,57 @@ using System.Linq;
 /*Tạo lớp trừu tượng chung cho các chức năng của itemitem*/
 public abstract class ItemAbility
 {
-    
     public abstract string itemName { get; }
     public abstract void Proccess();
+    public abstract bool isSupport { get; }
 }
 
 /*Tạo lớp "con" kế thừa "ItemAbility"*/
 public class ChrysanthemumAbility : ItemAbility
 {
     public override string itemName => "Chrysanthemum"; // Ghi đè PT itemName
+    public override bool isSupport => false;
+
     public override void Proccess() // Ghi đè PT Proccess
     {
         Debug.Log("Flower is use!");
     }
 }
 
+public class WaterGemAbility : ItemAbility
+{
+    public override string itemName => "WaterGem"; // Ghi đè PT itemName
+    public override bool isSupport => true;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        Debug.Log("water gem is use!");
+    }
+}
+
 public class LampAbility : ItemAbility
 {
     public override string itemName => "Lamp"; // Ghi đè PT itemName
+    public override bool isSupport => true;
+
     public override void Proccess() // Ghi đè PT Proccess
     {
-        Debug.Log("Lamp is use!");
+        GameObject lamp = GameObject.Find("Lamp");
+        Light light = lamp.GetComponentInChildren<Light>();
+        MeshRenderer meshRenderer = lamp.GetComponentInChildren<MeshRenderer>();
+        Material material = meshRenderer.materials[1];
+        if (material.IsKeywordEnabled("_EMISSION"))
+        {
+            meshRenderer.materials[1].DisableKeyword("_EMISSION");
+            material.color = Color.black;
+            light.enabled = false;
+
+        }
+        else
+        {
+            meshRenderer.materials[1].EnableKeyword("_EMISSION");
+            light.enabled = true;
+            material.color = Color.white;
+        }
     }
 }
 

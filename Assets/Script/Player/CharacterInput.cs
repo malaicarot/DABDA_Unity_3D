@@ -34,20 +34,21 @@ public class CharacterInput : MonoBehaviour
     {
         if (Input.anyKey)
         {
-            for (int i = (int)KeyCode.Alpha1; i <= (int)KeyCode.Alpha5; i++)
+            for (int i = (int)KeyCode.Alpha1; i <= (int)KeyCode.Alpha9; i++)
             {
                 KeyCode key = (KeyCode)i;
                 if (Input.GetKeyDown(key))
                 {
                     int exactNumber = i - (int)KeyCode.Alpha0;
                     SwitchItemInput(exactNumber);
-                    
                 }
-
+                if(Input.GetKeyUp(key)){
+                    SwitchItemInput(0);
+                }
             }
         }
-
     }
+
     public void OnInteract()
     {
         InteractInput(Input.GetKeyDown(KeyCode.E));

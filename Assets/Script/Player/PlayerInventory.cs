@@ -1,122 +1,190 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using System.Xml.Serialization;
+using JetBrains.Annotations;
 
 [RequireComponent(typeof(PooledObject))]
 public class PlayerInventory : PooledObject
 {
-    // [SerializeField] List<string> itemNameList;
-    [SerializeField] Transform hand;
+    [SerializeField] Transform leftHand;
+    [SerializeField] Transform rightHand;
+
     MarkPool currentItem;
+    MarkPool currentSupportItem;
+
     ItemAbility currentItemAbility;
+    ItemAbility currentSupportItemAbility;
+
     CharacterInput _input;
     InventoryManagers inventoryManagers;
-
-    enum ItemName
-    {
-        Chrysanthemum,
-        Lamp
-    }
+    Animator animator;
+    Dictionary<string, bool> type;
     void Start()
     {
+        type = new Dictionary<string, bool>();
         _input = GetComponent<CharacterInput>();
         inventoryManagers = FindFirstObjectByType<InventoryManagers>();
+        animator = GetComponent<Animator>();
     }
     void Update()
     {
+        if (currentItem != null)
+        {
+            currentItem.transform.position = rightHand.position;
+        }
+        if (currentSupportItem != null)
+        {
+            currentSupportItem.transform.position = leftHand.position;
+        }
+
         if (currentItemAbility != null && Input.GetKeyDown(KeyCode.Q))
         {
             currentItemAbility.Proccess();
         }
+
+        if (currentSupportItemAbility != null && Input.GetKeyDown(KeyCode.R))
+        {
+            currentSupportItemAbility.Proccess();
+        }
         SwitchItem(_input.switchItem);
+
     }
 
-    void EquipItem(string name)
+    void EquipItem(string name, bool type)
     {
-        if (inventoryManagers.itemNameList.Contains(name))
+        if (type)
         {
-            currentItemAbility = AbilityFactory.GetItemAbility(name);
+            FindItemByType(name, type, inventoryManagers.itemSupportNameList, currentSupportItem, currentSupportItemAbility);
+        }
+        else
+        {
+            FindItemByType(name, type, inventoryManagers.itemNameList, currentItem, currentItemAbility);
+        }
+    }
 
-            if (currentItemAbility != null)
+    void FindItemByType(string name, bool type, List<string> itemList, MarkPool itemType, ItemAbility itemAbility)
+    {
+        if (itemList.Contains(name))
+        {
+            if (itemAbility != null)
             {
-                foreach (string item in inventoryManagers.itemNameList)
+                foreach (string item in itemList)
                 {
                     if (item.Equals(name, StringComparison.OrdinalIgnoreCase))
                     {
-                        EquipPrefab(name);
-                        // break;
+                        EquipPrefab(name, type);
                     }
                 }
             }
         }
         else
         {
-            if (currentItem != null)
+            if (itemType != null)
             {
-                currentItem.ItemRelease();
+                itemType.ItemRelease();
             }
         }
     }
 
     public void AddInventory(string name)
     {
-        if (!inventoryManagers.itemNameList.Contains(name))
+        if (AbilityFactory.GetItemAbility(name).isSupport)
         {
-            inventoryManagers.itemNameList.Add(name);
-            inventoryManagers.AddItemsInUI();
+            currentSupportItemAbility = AbilityFactory.GetItemAbility(name);
+            if (currentSupportItemAbility != null)
+            {
+                if (!inventoryManagers.itemSupportNameList.Contains(name))
+                {
+                    inventoryManagers.itemSupportNameList.Add(name);
+                    inventoryManagers.AddItemsInUI(currentSupportItemAbility.isSupport);
+                }
+            }
+            type.Add(name, currentSupportItemAbility.isSupport);
+        }
+        else
+        {
+            currentItemAbility = AbilityFactory.GetItemAbility(name);
+            if (currentItemAbility != null)
+            {
+                if (!inventoryManagers.itemNameList.Contains(name))
+                {
+                    inventoryManagers.itemNameList.Add(name);
+                    inventoryManagers.AddItemsInUI(currentItemAbility.isSupport);
+                }
+            }
+            type.Add(name, currentItemAbility.isSupport);
         }
     }
 
-    void EquipPrefab(string name)
+    void EquipPrefab(string name, bool type)
     {
-        if (currentItem != null)
+        if (type)
         {
-            currentItem.ItemRelease();
+            currentSupportItem = EquipPrefabItemByType(name, currentSupportItem, leftHand);
+            animator.SetBool("GrabItems", true);
         }
-        currentItem = ItemsPool.SingleTonItemsPool.GetItem(name, hand.position, Quaternion.identity);
-        currentItem.gameObject.GetComponent<BoxCollider>().enabled = false;
+        else
+        {
+            currentItem = EquipPrefabItemByType(name, currentItem, rightHand);
+        }
+    }
+
+    MarkPool EquipPrefabItemByType(string name, MarkPool item, Transform itemPosition)
+    {
+        if (item != null)
+        {
+            item.ItemRelease();
+        }
+        item = ItemsPool.SingleTonItemsPool.GetItem(name, itemPosition.position, Quaternion.identity);
+        item.gameObject.GetComponent<BoxCollider>().enabled = false;
+        return item;
     }
 
     void SwitchItem(int value)
     {
-        CheckAndEquip(value);
-        // switch (value)
-        // {
-        //     case 1:
-        //         CheckAndEquip(1);
-        //         break;
-        //     case 2:
-        //         CheckAndEquip(2);
-        //         break;
-        //     case 3:
-        //         CheckAndEquip(3);
-        //         break;
-        //     case 4:
-        //         CheckAndEquip(4);
-        //         break;
-        //     case 5:
-        //         CheckAndEquip(5);
-        //         break;
-        // }
+        if (value > 0 && value < 6)
+        {
+            CheckAndEquipItems(value, inventoryManagers.itemNameList, currentItem);
+        }
+        else if (value > 5 && value < 10)
+        {
+            CheckAndEquipItems(value, inventoryManagers.itemSupportNameList, currentSupportItem);
+        }
     }
 
-
-    void CheckAndEquip(int value)
+    void CheckAndEquipItems(int value, List<string> itemListBase, MarkPool item)
     {
-        int index = value - 1;
-        if (index >= 0 && index < inventoryManagers.itemNameList.Count)
+        int index = 0;
+        bool isSupport = false;
+        if (value > 0 && value < 6)
         {
-            EquipItem(inventoryManagers.itemNameList[index]);
-            inventoryManagers.TargetItem(inventoryManagers.itemNameList[index]);
+            index = value - 1;
+            isSupport = false;
+
+        }
+        else if (value > 5 && value < 10)
+        {
+            index = value - 1 - 5;
+            isSupport = true;
+        }
+
+        if (index >= 0 && index < itemListBase.Count)
+        {
+            EquipItem(itemListBase[index], type[itemListBase[index]]);
+            inventoryManagers.TargetItem(itemListBase[index], type[itemListBase[index]]);
         }
         else
         {
-            if (currentItem != null)
+            if (item != null)
             {
-                currentItem.Release();
+                item.ItemRelease();
+
             }
-            inventoryManagers.TargetItem("");
+            if (isSupport)
+            {
+                animator.SetBool("GrabItems", false);
+            }
+            inventoryManagers.TargetItem("", isSupport);
         }
     }
 }

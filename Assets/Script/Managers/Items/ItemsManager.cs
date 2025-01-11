@@ -23,6 +23,4 @@ public class ItemsManager : MonoBehaviour
             notificationText.enabled = false;
         }
     }
-
-
 }
