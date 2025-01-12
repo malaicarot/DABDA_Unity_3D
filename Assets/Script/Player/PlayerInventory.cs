@@ -31,10 +31,13 @@ public class PlayerInventory : PooledObject
         if (currentItem != null)
         {
             currentItem.transform.position = rightHand.position;
+            currentItem.transform.rotation = rightHand.rotation;
         }
         if (currentSupportItem != null)
         {
             currentSupportItem.transform.position = leftHand.position;
+            currentSupportItem.transform.rotation = leftHand.rotation;
+
         }
 
         if (currentItemAbility != null && Input.GetKeyDown(KeyCode.Q))
@@ -88,6 +91,7 @@ public class PlayerInventory : PooledObject
 
     public void AddInventory(string name)
     {
+        // animator.SetBool("PickUp", true);
         if (AbilityFactory.GetItemAbility(name).isSupport)
         {
             currentSupportItemAbility = AbilityFactory.GetItemAbility(name);
@@ -121,11 +125,12 @@ public class PlayerInventory : PooledObject
         if (type)
         {
             currentSupportItem = EquipPrefabItemByType(name, currentSupportItem, leftHand);
-            animator.SetBool("GrabItems", true);
+            animator.SetBool("GrabSupportItems", true);
         }
         else
         {
             currentItem = EquipPrefabItemByType(name, currentItem, rightHand);
+            animator.SetBool("GrabItems", true);
         }
     }
 
@@ -135,7 +140,7 @@ public class PlayerInventory : PooledObject
         {
             item.ItemRelease();
         }
-        item = ItemsPool.SingleTonItemsPool.GetItem(name, itemPosition.position, Quaternion.identity);
+        item = ItemsPool.SingleTonItemsPool.GetItem(name, itemPosition.position, itemPosition.rotation);
         item.gameObject.GetComponent<BoxCollider>().enabled = false;
         return item;
     }
@@ -182,7 +187,10 @@ public class PlayerInventory : PooledObject
             }
             if (isSupport)
             {
+                animator.SetBool("GrabSupportItems", false);
+            }else{
                 animator.SetBool("GrabItems", false);
+
             }
             inventoryManagers.TargetItem("", isSupport);
         }
