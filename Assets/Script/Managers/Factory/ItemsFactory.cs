@@ -20,7 +20,16 @@ public class ChrysanthemumAbility : ItemAbility
 
     public override void Proccess() // Ghi đè PT Proccess
     {
-        Debug.Log("Flower is use!");
+        GameObject waterGem = GameObject.Find("WaterGem");
+        GameObject flower = GameObject.Find("Chrysanthemum");
+        if(waterGem != null && flower != null){
+            MeshRenderer[] meshRenderer = flower.GetComponentsInChildren<MeshRenderer>();
+            foreach(MeshRenderer pental in meshRenderer){
+                if(pental.name == "pental"){
+                    pental.material.color = Color.white;
+                }
+            }
+        }
     }
 }
 
@@ -58,6 +67,28 @@ public class LampAbility : ItemAbility
             light.enabled = true;
             material.color = Color.white;
         }
+    }
+}
+
+public class MirrorAbility : ItemAbility
+{
+    public override string itemName => "Mirror"; // Ghi đè PT itemName
+    public override bool isSupport => false;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        GameObject waterGem = GameObject.Find("WaterGem");
+        GameObject flower = GameObject.Find("Chrysanthemum");
+        if(flower != null && waterGem != null){
+            MeshRenderer[] meshRenderer = flower.GetComponentsInChildren<MeshRenderer>();
+            foreach (MeshRenderer pental in meshRenderer)
+            {
+                if(pental.name == "pental" && pental.material.color == Color.white){
+                    Debug.Log("Pass!");
+                }
+            }
+        }
+
+    
     }
 }
 

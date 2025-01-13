@@ -30,11 +30,4 @@ public class PlayerCollision : MonoBehaviour
         animator.SetBool("PickUp", false);
 
     }
-    // void OnTriggerExit(Collider other)
-    // {
-    //     if (other.CompareTag("Item"))
-    //     {
-    //         animator.SetBool("PickUp", false);
-    //     }
-    // }
 }

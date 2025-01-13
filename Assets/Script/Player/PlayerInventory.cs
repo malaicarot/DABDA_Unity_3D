@@ -19,6 +19,10 @@ public class PlayerInventory : PooledObject
     InventoryManagers inventoryManagers;
     Animator animator;
     Dictionary<string, bool> type;
+    bool isEquip = false;
+    bool isEquipSupport = false;
+
+
     void Start()
     {
         type = new Dictionary<string, bool>();
@@ -40,12 +44,12 @@ public class PlayerInventory : PooledObject
 
         }
 
-        if (currentItemAbility != null && Input.GetKeyDown(KeyCode.Q))
+        if (currentItemAbility != null && Input.GetKeyDown(KeyCode.Q) && isEquip)
         {
             currentItemAbility.Proccess();
         }
 
-        if (currentSupportItemAbility != null && Input.GetKeyDown(KeyCode.R))
+        if (currentSupportItemAbility != null && Input.GetKeyDown(KeyCode.R) && isEquipSupport)
         {
             currentSupportItemAbility.Proccess();
         }
@@ -57,10 +61,12 @@ public class PlayerInventory : PooledObject
     {
         if (type)
         {
+            currentSupportItemAbility = AbilityFactory.GetItemAbility(name);
             FindItemByType(name, type, inventoryManagers.itemSupportNameList, currentSupportItem, currentSupportItemAbility);
         }
         else
         {
+            currentItemAbility = AbilityFactory.GetItemAbility(name);
             FindItemByType(name, type, inventoryManagers.itemNameList, currentItem, currentItemAbility);
         }
     }
@@ -91,32 +97,32 @@ public class PlayerInventory : PooledObject
 
     public void AddInventory(string name)
     {
-        // animator.SetBool("PickUp", true);
-        if (AbilityFactory.GetItemAbility(name).isSupport)
+        string correctName = name.Substring(0, name.Length - 6);
+        if (AbilityFactory.GetItemAbility(correctName).isSupport)
         {
-            currentSupportItemAbility = AbilityFactory.GetItemAbility(name);
+            currentSupportItemAbility = AbilityFactory.GetItemAbility(correctName);
             if (currentSupportItemAbility != null)
             {
-                if (!inventoryManagers.itemSupportNameList.Contains(name))
+                if (!inventoryManagers.itemSupportNameList.Contains(correctName))
                 {
-                    inventoryManagers.itemSupportNameList.Add(name);
+                    inventoryManagers.itemSupportNameList.Add(correctName);
                     inventoryManagers.AddItemsInUI(currentSupportItemAbility.isSupport);
                 }
             }
-            type.Add(name, currentSupportItemAbility.isSupport);
+            type.Add(correctName, currentSupportItemAbility.isSupport);
         }
         else
         {
-            currentItemAbility = AbilityFactory.GetItemAbility(name);
+            currentItemAbility = AbilityFactory.GetItemAbility(correctName);
             if (currentItemAbility != null)
             {
-                if (!inventoryManagers.itemNameList.Contains(name))
+                if (!inventoryManagers.itemNameList.Contains(correctName))
                 {
-                    inventoryManagers.itemNameList.Add(name);
+                    inventoryManagers.itemNameList.Add(correctName);
                     inventoryManagers.AddItemsInUI(currentItemAbility.isSupport);
                 }
             }
-            type.Add(name, currentItemAbility.isSupport);
+            type.Add(correctName, currentItemAbility.isSupport);
         }
     }
 
@@ -149,10 +155,12 @@ public class PlayerInventory : PooledObject
     {
         if (value > 0 && value < 6)
         {
+            isEquip = true;
             CheckAndEquipItems(value, inventoryManagers.itemNameList, currentItem);
         }
         else if (value > 5 && value < 10)
         {
+            isEquipSupport = true;
             CheckAndEquipItems(value, inventoryManagers.itemSupportNameList, currentSupportItem);
         }
     }
@@ -161,6 +169,7 @@ public class PlayerInventory : PooledObject
     {
         int index = 0;
         bool isSupport = false;
+        
         if (value > 0 && value < 6)
         {
             index = value - 1;
@@ -182,14 +191,16 @@ public class PlayerInventory : PooledObject
         {
             if (item != null)
             {
+                // 
                 item.ItemRelease();
-
             }
             if (isSupport)
             {
                 animator.SetBool("GrabSupportItems", false);
+                isEquipSupport = false;
             }else{
                 animator.SetBool("GrabItems", false);
+                isEquip = false;
 
             }
             inventoryManagers.TargetItem("", isSupport);
