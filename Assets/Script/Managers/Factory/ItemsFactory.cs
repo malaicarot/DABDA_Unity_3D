@@ -78,17 +78,21 @@ public class MirrorAbility : ItemAbility
     {
         GameObject waterGem = GameObject.Find("WaterGem");
         GameObject flower = GameObject.Find("Chrysanthemum");
+        GameObject scene = GameObject.Find("Scene");
+        LoadScene loadScene = scene.GetComponent<LoadScene>();
         if(flower != null && waterGem != null){
             MeshRenderer[] meshRenderer = flower.GetComponentsInChildren<MeshRenderer>();
             foreach (MeshRenderer pental in meshRenderer)
             {
                 if(pental.name == "pental" && pental.material.color == Color.white){
-                    Debug.Log("Pass!");
+                    GameObject mirror = GameObject.Find(itemName);
+                    Camera camera1 = mirror.GetComponentInChildren<Camera>();
+                    camera1.enabled = true;
+                    // Chạy cut scene rồi loadScene
+                    loadScene.LoadSceneManager();
                 }
             }
         }
-
-    
     }
 }
 

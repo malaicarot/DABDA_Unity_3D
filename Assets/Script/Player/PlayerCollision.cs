@@ -5,6 +5,7 @@ public class PlayerCollision : MonoBehaviour
 {
     CharacterInput _input;
     PlayerInventory takeItem;
+    ItemAbility currentItem;
     Animator animator;
     private void Start()
     {
@@ -21,6 +22,12 @@ public class PlayerCollision : MonoBehaviour
             animator.SetBool("PickUp", true);
             takeItem.AddInventory(other.gameObject.name);
             Destroy(other.gameObject);
+        }
+
+        if(other.CompareTag("ItemInMap") && _input.interact){
+            currentItem = AbilityFactory.GetItemAbility(other.name);
+            currentItem.Proccess();
+
         }
         StartCoroutine(SetAnimation());
     }

@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2675257124500537639}
-  - component: {fileID: -4676796958082043890}
   - component: {fileID: 1269061345854450558}
   m_Layer: 0
   m_Name: Base Item Stand
@@ -35,18 +34,6 @@ Transform:
   - {fileID: 2362960283257100858}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4676796958082043890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 478618484439291728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e9a68b2c0e82e4bb3a90a4796d3beb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1269061345854450558
 BoxCollider:
   m_ObjectHideFlags: 0

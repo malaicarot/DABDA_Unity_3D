@@ -8,6 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Denial Scene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Anger Scene.unity
+    guid: 65ed2af69c0c0b84fa4023171430eded
+  - enabled: 1
+    path: Assets/Scenes/Bargaining Scene.unity
+    guid: e0ec572e8d22b37489487760cff8a3fb
+  - enabled: 1
+    path: Assets/Scenes/Depression Scene.unity
+    guid: a91d78031c3ea6f4d96b412d931dc41d
+  - enabled: 1
+    path: Assets/Scenes/Acceptance Scene.unity
+    guid: 3beec2fe8ad8d3245ab7d0f5b273f94a
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 40a5e4095bf3b0a4983c599edff10c66, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 81393551711e72c45890ccdae8065421, type: 2}
