@@ -7,9 +7,19 @@ public class InventoryManagers : MonoBehaviour
 {
     [SerializeField] List<GameObject> inventoryUI; //Game object cha cua hinh anh item
     [SerializeField] List<GameObject> inventorySupportUI;
+
+    /**********************************************************/
+    [SerializeField] GameObject SlotInBag; // Prefabs để lưu hình ảnh trong inventory panel
+    [SerializeField] GameObject ItemNormalPanel; // Prefabs để nhóm các item bình thường (cha của slot in bag)
+    [SerializeField] GameObject ItemSpecialPanel; // Prefabs để nhóm các item đặc biệt (cha của slot in bag)
+
+
+    /**********************************************************/
     [SerializeField] Image inventorySlot;          // Prefab sinh hinh item
     [SerializeField] List<Sprite> itemSprite;      // Hinh anh item
 
+
+    [SerializeField] GameObject InventoryUI;
     public List<string> itemNameList;
     public List<string> itemSupportNameList;
 
@@ -17,8 +27,32 @@ public class InventoryManagers : MonoBehaviour
     List<Image> imageSupportItemsEmptyList;
 
 
+
+    /**********************************************************/
+    // Số hàng và cột 
+    [SerializeField] int slotInBagColSpecial = 1;
+    [SerializeField] int slotInBagRowSpecial = 4;
+    [SerializeField] int slotInBagCol = 5;
+    [SerializeField] int slotInBagRow = 2;
+    // Vị trí tiếp theo
+    [SerializeField] float nextPosX = 160;
+    [SerializeField] float nextPosY = 160;
+    // Vị trí khởi đầu
+    [SerializeField] float startPosX = -500;
+    [SerializeField] float startPosY = 200;
+    [SerializeField] float startPosYSpecial = 200;
+
+    /**********************************************************/
+
+    CharacterInput _input;
+    bool inventoryStatus = false;
+    List<Image> slotNormal;
+    List<Image> slotSpecial;
+
+
     void Start()
     {
+        _input = FindFirstObjectByType<CharacterInput>();
         imageItemsEmptyList = new List<Image>();
         imageSupportItemsEmptyList = new List<Image>();
 
@@ -35,32 +69,27 @@ public class InventoryManagers : MonoBehaviour
             imageSupportItemsEmptyList.Add(slot);
             slot.enabled = false;
         }
+        InventoryUI.SetActive(false);
+        SpawnSlotInbag(slotInBagRowSpecial, slotInBagColSpecial, startPosYSpecial, ItemSpecialPanel, slotSpecial);
+        SpawnSlotInbag(slotInBagRow, slotInBagCol, startPosY, ItemNormalPanel, slotNormal);
+
+    }
+    void Update()
+    {
+        InventoryHandle();
+        // UpdateInventory();
     }
     public void AddItemsInUI(bool type)
     {
         if (type)
         {
-            foreach (Image item in imageSupportItemsEmptyList)
-            {
-                if (item.sprite == null)
-                {
-                    item.sprite = itemSprite.Find(item => item.name == itemSupportNameList[itemSupportNameList.Count - 1]);
-                    item.enabled = true;
-                    break;
-                }
-            }
+            GetImage(imageSupportItemsEmptyList, itemSupportNameList);// cap nhat UI hien thi ben ngoai (special)
+            GetImage(slotSpecial, itemSupportNameList);               // cap nhat UI inventory (special)
         }
         else
         {
-            foreach (Image item in imageItemsEmptyList)
-            {
-                if (item.sprite == null)
-                {
-                    item.sprite = itemSprite.Find(item => item.name == itemNameList[itemNameList.Count - 1]);
-                    item.enabled = true;
-                    break;
-                }
-            }
+            GetImage(imageItemsEmptyList, itemNameList);// cap nhat UI hien thi ben ngoai (normal)
+            GetImage(slotNormal, itemNameList);         // cap nhat UI inventory (special)
         }
 
     }
@@ -94,6 +123,51 @@ public class InventoryManagers : MonoBehaviour
                     parentColor.color = Color.white;
                 }
             }
+        }
+    }
+
+
+    void SpawnSlotInbag(int row, int col, float startY, GameObject parentPrefab, List<Image> slot)
+    {
+        for (int i = 0; i < row; i++)
+        {
+            Vector3 slotPosition = new Vector3(startPosX, startY, 0);
+            slotPosition.y -= i * nextPosY;
+            for (int j = 0; j < col; j++)
+            {
+                GameObject slotChild = Instantiate(SlotInBag, slotPosition, Quaternion.identity);
+                slotChild.transform.SetParent(parentPrefab.transform, false);
+                slotPosition.x += nextPosX;
+                Transform child = slotChild.transform.Find("Image");
+                Image image = child.gameObject.GetComponent<Image>();
+                slot.Add(image);
+                image.enabled = false;
+            }
+        }
+    }
+
+    void GetImage(List<Image> list, List<string> itemName)
+    {
+        foreach (Image item in list)
+        {
+            if (item.sprite == null)
+            {
+                item.sprite = itemSprite.Find(item => item.name == itemName[itemName.Count - 1]);
+                item.enabled = true;
+                break;
+            }
+        }
+    }
+
+
+    void InventoryHandle()
+    {
+        if (_input.getInventory)
+        {
+            _input.SetCursorState(inventoryStatus);
+            inventoryStatus = !inventoryStatus;
+            Cursor.visible = inventoryStatus;
+            InventoryUI.SetActive(inventoryStatus);
         }
     }
 }

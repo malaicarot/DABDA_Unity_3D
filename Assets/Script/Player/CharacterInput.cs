@@ -10,6 +10,8 @@ public class CharacterInput : MonoBehaviour
     public bool sprint;
     public bool interact;
     public int switchItem;
+    public bool getInventory;
+
 
     public bool cursorLooked = true;
     public bool cursorInputForLook = true;
@@ -28,6 +30,7 @@ public class CharacterInput : MonoBehaviour
         OnLook();
         OnInteract();
         OnSwitchItem();
+        OnGetInventory();
     }
 
     public void OnSwitchItem()
@@ -47,6 +50,10 @@ public class CharacterInput : MonoBehaviour
                 }
             }
         }
+    }
+    public void OnGetInventory()
+    {
+        getInventory = Input.GetKeyDown(KeyCode.Tab);
     }
 
     public void OnInteract()
@@ -120,7 +127,7 @@ public class CharacterInput : MonoBehaviour
         SetCursorState(cursorLooked);
     }
 
-    void SetCursorState(bool newState)
+    public void SetCursorState(bool newState)
     {
         Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
     }

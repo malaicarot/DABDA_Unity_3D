@@ -73,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         // DontDestroyOnLoad(gameObject);
+        
         _cinemachineTargetYaw = CinemachineTarget.transform.rotation.eulerAngles.y;
         _hasAnimator = TryGetComponent(out _animator);
         _controller = GetComponent<CharacterController>();
