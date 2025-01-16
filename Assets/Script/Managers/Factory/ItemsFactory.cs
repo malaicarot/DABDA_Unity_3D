@@ -3,11 +3,14 @@ using System;
 using UnityEngine;
 using System.Reflection;
 using System.Linq;
+using UnityEditor.Timeline.Actions;
+using System.Collections;
 
 /*Tạo lớp trừu tượng chung cho các chức năng của itemitem*/
 public abstract class ItemAbility
 {
     public abstract string itemName { get; }
+    public abstract string description { get; }
     public abstract void Proccess();
     public abstract bool isSupport { get; }
 }
@@ -16,16 +19,23 @@ public abstract class ItemAbility
 public class ChrysanthemumAbility : ItemAbility
 {
     public override string itemName => "Chrysanthemum"; // Ghi đè PT itemName
+    public override string description => "This is a flower!";
+
     public override bool isSupport => false;
+
+
 
     public override void Proccess() // Ghi đè PT Proccess
     {
         GameObject waterGem = GameObject.Find("WaterGem");
         GameObject flower = GameObject.Find("Chrysanthemum");
-        if(waterGem != null && flower != null){
+        if (waterGem != null && flower != null)
+        {
             MeshRenderer[] meshRenderer = flower.GetComponentsInChildren<MeshRenderer>();
-            foreach(MeshRenderer pental in meshRenderer){
-                if(pental.name == "pental"){
+            foreach (MeshRenderer pental in meshRenderer)
+            {
+                if (pental.name == "pental")
+                {
                     pental.material.color = Color.white;
                 }
             }
@@ -36,16 +46,30 @@ public class ChrysanthemumAbility : ItemAbility
 public class WaterGemAbility : ItemAbility
 {
     public override string itemName => "WaterGem"; // Ghi đè PT itemName
+    public override string description => "This is a water gem!";
+
     public override bool isSupport => true;
     public override void Proccess() // Ghi đè PT Proccess
     {
-        Debug.Log("water gem is use!");
+        GameObject mirror = GameObject.Find("Mirror");
+        Camera camera1 = mirror.GetComponentInChildren<Camera>();
+        GameObject scene = GameObject.Find("Scene");
+
+        LoadScene loadScene = scene.GetComponent<LoadScene>();
+
+        if (camera1.enabled == true)
+        {
+            loadScene.loadScene();
+
+        }
     }
 }
 
 public class LampAbility : ItemAbility
 {
     public override string itemName => "Lamp"; // Ghi đè PT itemName
+    public override string description => "This is a lamp!";
+
     public override bool isSupport => true;
 
     public override void Proccess() // Ghi đè PT Proccess
@@ -73,23 +97,25 @@ public class LampAbility : ItemAbility
 public class MirrorAbility : ItemAbility
 {
     public override string itemName => "Mirror"; // Ghi đè PT itemName
+    public override string description => "This is a mirror!";
+
     public override bool isSupport => false;
     public override void Proccess() // Ghi đè PT Proccess
     {
         GameObject waterGem = GameObject.Find("WaterGem");
         GameObject flower = GameObject.Find("Chrysanthemum");
-        GameObject scene = GameObject.Find("Scene");
-        LoadScene loadScene = scene.GetComponent<LoadScene>();
-        if(flower != null && waterGem != null){
+        GameObject timeline = GameObject.Find("MasterTimeline");
+        // TimelineController timelineController = timeline.GetComponent<TimelineController>();
+        if (flower != null && waterGem != null)
+        {
             MeshRenderer[] meshRenderer = flower.GetComponentsInChildren<MeshRenderer>();
             foreach (MeshRenderer pental in meshRenderer)
             {
-                if(pental.name == "pental" && pental.material.color == Color.white){
+                if (pental.name == "pental" && pental.material.color == Color.white)
+                {
                     GameObject mirror = GameObject.Find(itemName);
                     Camera camera1 = mirror.GetComponentInChildren<Camera>();
                     camera1.enabled = true;
-                    // Chạy cut scene rồi loadScene
-                    loadScene.LoadSceneManager();
                 }
             }
         }

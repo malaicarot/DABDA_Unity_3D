@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,7 +27,7 @@ public class InventoryManagers : MonoBehaviour
     List<Image> imageItemsEmptyList;
     List<Image> imageSupportItemsEmptyList;
 
-
+    [SerializeField] TextMeshProUGUI textMeshProUGUI;
 
     /**********************************************************/
     // Số hàng và cột 
@@ -55,6 +56,8 @@ public class InventoryManagers : MonoBehaviour
         _input = FindFirstObjectByType<CharacterInput>();
         imageItemsEmptyList = new List<Image>();
         imageSupportItemsEmptyList = new List<Image>();
+        slotNormal = new List<Image>();
+        slotSpecial = new List<Image>();
 
         foreach (GameObject itemSlot in inventoryUI)
         {
@@ -77,7 +80,6 @@ public class InventoryManagers : MonoBehaviour
     void Update()
     {
         InventoryHandle();
-        // UpdateInventory();
     }
     public void AddItemsInUI(bool type)
     {
@@ -168,6 +170,16 @@ public class InventoryManagers : MonoBehaviour
             inventoryStatus = !inventoryStatus;
             Cursor.visible = inventoryStatus;
             InventoryUI.SetActive(inventoryStatus);
+        }
+    }
+
+
+    public void DisplayDescription(string name)
+    {
+        string content = AbilityFactory.GetItemAbility(name).description;
+        if (content != null)
+        {
+            textMeshProUGUI.text = content;
         }
     }
 }
