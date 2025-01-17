@@ -54,12 +54,18 @@ public class WaterGemAbility : ItemAbility
         GameObject mirror = GameObject.Find("Mirror");
         Camera camera1 = mirror.GetComponentInChildren<Camera>();
         GameObject scene = GameObject.Find("Scene");
-
         LoadScene loadScene = scene.GetComponent<LoadScene>();
+
+        GameObject player = GameObject.Find("Player");
+        PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
+        GameObject timeLine = GameObject.Find("MasterTimeline");
+        TimelineController timelineController = timeLine.GetComponent<TimelineController>();
 
         if (camera1.enabled == true)
         {
-            loadScene.loadScene();
+            playerMovement.Floating();
+            timelineController.PlayTimeline();
+            // loadScene.loadScene();
 
         }
     }

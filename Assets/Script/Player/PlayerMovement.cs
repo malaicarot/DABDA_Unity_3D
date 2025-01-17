@@ -59,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
     int animIDFreeFall;
     int animIDMotionSpeed;
     bool _hasAnimator;
+    
 
 
 
@@ -257,6 +258,10 @@ public class PlayerMovement : MonoBehaviour
         animIDGrounded = Animator.StringToHash("Grounded");
         animIDFreeFall = Animator.StringToHash("FreeFall");
         animIDJump = Animator.StringToHash("Jump");
+    }
+
+    public void Floating(){
+        _animator.SetBool("Floating", true);
     }
 
 
