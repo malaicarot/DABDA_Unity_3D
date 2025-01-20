@@ -122,9 +122,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2817475741015965302}
+      - m_Target: {fileID: 7088104093923344671}
         m_TargetAssemblyTypeName: ShowDescription, Assembly-CSharp
-        m_MethodName: DisplayDescription
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -146,7 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6428af0705345243a53911f530cbd36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 
 --- !u!1 &7675603089481721486
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,19 +18,26 @@ public class CharacterInput : MonoBehaviour
 
     public bool analogMovement = true;
 
+    public bool enableMovement = true;
+
+
     public float scalePosition = 0.05f;
-    
+
 
 
     void Update()
     {
-        OnMove();
-        OnJump();
-        OnSprint();
-        OnLook();
-        OnInteract();
-        OnSwitchItem();
-        OnGetInventory();
+        if (enableMovement)
+        {
+            OnMove();
+            OnJump();
+            OnSprint();
+            OnLook();
+            OnInteract();
+            OnSwitchItem();
+            OnGetInventory();
+        }
+
     }
 
     public void OnSwitchItem()
@@ -45,7 +52,8 @@ public class CharacterInput : MonoBehaviour
                     int exactNumber = i - (int)KeyCode.Alpha0;
                     SwitchItemInput(exactNumber);
                 }
-                if(Input.GetKeyUp(key)){
+                if (Input.GetKeyUp(key))
+                {
                     SwitchItemInput(0);
                 }
             }

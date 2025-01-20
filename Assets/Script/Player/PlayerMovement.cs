@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
     int animIDFreeFall;
     int animIDMotionSpeed;
     bool _hasAnimator;
-    
+
 
 
 
@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         // DontDestroyOnLoad(gameObject);
-        
+
         _cinemachineTargetYaw = CinemachineTarget.transform.rotation.eulerAngles.y;
         _hasAnimator = TryGetComponent(out _animator);
         _controller = GetComponent<CharacterController>();
@@ -89,9 +89,13 @@ public class PlayerMovement : MonoBehaviour
     {
         _hasAnimator = TryGetComponent(out _animator);
 
-        ProcessMover();
-        GroundChecking();
-        ProcessJump();
+        if (_input.enableMovement)
+        {
+            ProcessMover();
+            GroundChecking();
+            ProcessJump();
+        }
+
     }
 
     void LateUpdate()
@@ -260,8 +264,10 @@ public class PlayerMovement : MonoBehaviour
         animIDJump = Animator.StringToHash("Jump");
     }
 
-    public void Floating(){
+    public void Floating()
+    {
         _animator.SetBool("Floating", true);
+        Debug.Log("is play");
     }
 
 
