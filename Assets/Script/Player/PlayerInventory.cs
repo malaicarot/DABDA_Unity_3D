@@ -29,6 +29,16 @@ public class PlayerInventory : PooledObject
         _input = GetComponent<CharacterInput>();
         inventoryManagers = FindFirstObjectByType<InventoryManagers>();
         animator = GetComponent<Animator>();
+
+        if (SaveManager.SingletonSaveData.saveData != null)
+        {
+            foreach (var item in SaveManager.SingletonSaveData.saveData.inventoryDatas)
+            {
+                AddInventory(item.itemName);
+            }
+        }
+
+
     }
     void Update()
     {
@@ -97,32 +107,32 @@ public class PlayerInventory : PooledObject
 
     public void AddInventory(string name)
     {
-        string correctName = name.Substring(0, name.Length - 6);
-        if (AbilityFactory.GetItemAbility(correctName).isSupport)
+
+        if (AbilityFactory.GetItemAbility(name).isSupport)
         {
-            currentSupportItemAbility = AbilityFactory.GetItemAbility(correctName);
+            currentSupportItemAbility = AbilityFactory.GetItemAbility(name);
             if (currentSupportItemAbility != null)
             {
-                if (!inventoryManagers.itemSupportNameList.Contains(correctName))
+                if (!inventoryManagers.itemSupportNameList.Contains(name))
                 {
-                    inventoryManagers.itemSupportNameList.Add(correctName);
+                    inventoryManagers.itemSupportNameList.Add(name);
                     inventoryManagers.AddItemsInUI(currentSupportItemAbility.isSupport);
                 }
             }
-            type.Add(correctName, currentSupportItemAbility.isSupport);
+            type.Add(name, currentSupportItemAbility.isSupport);
         }
         else
         {
-            currentItemAbility = AbilityFactory.GetItemAbility(correctName);
+            currentItemAbility = AbilityFactory.GetItemAbility(name);
             if (currentItemAbility != null)
             {
-                if (!inventoryManagers.itemNameList.Contains(correctName))
+                if (!inventoryManagers.itemNameList.Contains(name))
                 {
-                    inventoryManagers.itemNameList.Add(correctName);
+                    inventoryManagers.itemNameList.Add(name);
                     inventoryManagers.AddItemsInUI(currentItemAbility.isSupport);
                 }
             }
-            type.Add(correctName, currentItemAbility.isSupport);
+            type.Add(name, currentItemAbility.isSupport);
         }
     }
 
@@ -169,7 +179,7 @@ public class PlayerInventory : PooledObject
     {
         int index = 0;
         bool isSupport = false;
-        
+
         if (value > 0 && value < 6)
         {
             index = value - 1;
@@ -198,7 +208,9 @@ public class PlayerInventory : PooledObject
             {
                 animator.SetBool("GrabSupportItems", false);
                 isEquipSupport = false;
-            }else{
+            }
+            else
+            {
                 animator.SetBool("GrabItems", false);
                 isEquip = false;
 

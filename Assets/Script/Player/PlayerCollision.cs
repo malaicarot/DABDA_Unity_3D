@@ -20,11 +20,16 @@ public class PlayerCollision : MonoBehaviour
         if (other.CompareTag("Item") && _input.interact)
         {
             animator.SetBool("PickUp", true);
-            takeItem.AddInventory(other.gameObject.name);
+            string name =  other.gameObject.name;
+            string correctName = name.Substring(0, name.Length - 6);
+            takeItem.AddInventory(correctName);
+            SaveManager.SingletonSaveData.UpdateInventoryData("1", correctName, 1);
+
             Destroy(other.gameObject);
         }
 
-        if(other.CompareTag("ItemInMap") && _input.interact){
+        if (other.CompareTag("ItemInMap") && _input.interact)
+        {
             currentItem = AbilityFactory.GetItemAbility(other.name);
             currentItem.Proccess();
 
@@ -32,7 +37,8 @@ public class PlayerCollision : MonoBehaviour
         StartCoroutine(SetAnimation());
     }
 
-    IEnumerator SetAnimation(){
+    IEnumerator SetAnimation()
+    {
         yield return new WaitForSeconds(1);
         animator.SetBool("PickUp", false);
 

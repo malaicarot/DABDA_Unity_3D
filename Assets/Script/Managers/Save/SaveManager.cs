@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-class InventoryData
+public class InventoryData
 {
     public string itemID;
     public string itemName;
@@ -18,7 +18,7 @@ class InventoryData
     }
 }
 
-class SaveData
+public class SaveData
 {
     public List<InventoryData> inventoryDatas;
 
@@ -27,7 +27,7 @@ class SaveData
 public class SaveManager : MonoBehaviour
 {
     string savePath = "";
-    SaveData saveData;
+    public SaveData saveData;
     public static SaveManager SingletonSaveData;
     void Awake()
     {
@@ -57,19 +57,34 @@ public class SaveManager : MonoBehaviour
 
     public void LoadData()
     {
-        if(File.Exists(savePath)) // DA CO FILE
+        if (File.Exists(savePath)) // DA CO FILE
         {
             string jsonData = File.ReadAllText(savePath);
             saveData = JsonUtility.FromJson<SaveData>(jsonData);
             Debug.Log("Load data Success!");
         }
-        //  LOAD LAN DAU KH CO FILE
-        // Goi lai save data voi gia tri mac dinh
-
+        else
+        {
+            saveData = new SaveData
+            {
+                inventoryDatas = new List<InventoryData>()
+            };
+            SaveData();
+        }
     }
 
     public void UpdateInventoryData(string id, string name, int quantity)
     {
+        
+        if (saveData == null)
+        {
+            saveData = new SaveData();
+
+        }
+        if (saveData.inventoryDatas == null)
+        {
+            saveData.inventoryDatas = new List<InventoryData>();
+        }
         for (int i = 0; i < saveData.inventoryDatas.Count; i++)
         {
             if (saveData.inventoryDatas[i].itemID == id)
@@ -78,9 +93,16 @@ public class SaveManager : MonoBehaviour
                 break;
             }
         }
-        InventoryData data = new InventoryData(id, name, quantity);
 
+        InventoryData data = new InventoryData(id, name, quantity);
         saveData.inventoryDatas.Add(data);
+
+        foreach (var item in saveData.inventoryDatas)
+        {
+            Debug.Log("Item ID: " + item.itemID);
+            Debug.Log("Item Name: " + item.itemName);
+            Debug.Log("Item Quantity: " + item.itemQuantity);
+        }
         SaveData();
     }
 }

@@ -15,7 +15,6 @@ public class LoadScene : MonoBehaviour
         SceneManager.LoadScene(index + 1);        
     }
 
-
     IEnumerator WaitForLoad(){
         yield return new WaitForSeconds(2);
         LoadSceneManager();
