@@ -43,33 +43,6 @@ public class ChrysanthemumAbility : ItemAbility
     }
 }
 
-public class WaterGemAbility : ItemAbility
-{
-    public override string itemName => "WaterGem"; // Ghi đè PT itemName
-    public override string description => "This is a water gem!";
-
-    public override bool isSupport => true;
-    public override void Proccess() // Ghi đè PT Proccess
-    {
-        GameObject mirror = GameObject.Find("Mirror");
-        Camera camera1 = mirror.GetComponentInChildren<Camera>();
-        GameObject scene = GameObject.Find("Scene");
-        LoadScene loadScene = scene.GetComponent<LoadScene>();
-
-        GameObject player = GameObject.Find("Player");
-        PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
-        GameObject timeLine = GameObject.Find("MasterTimeline");
-        TimelineController timelineController = timeLine.GetComponent<TimelineController>();
-
-        if (camera1.enabled == true)
-        {
-            playerMovement.Floating();
-            timelineController.PlayTimeline();
-            // loadScene.loadScene();
-
-        }
-    }
-}
 
 public class LampAbility : ItemAbility
 {
@@ -125,6 +98,59 @@ public class MirrorAbility : ItemAbility
                 }
             }
         }
+    }
+}
+
+
+public class WaterGemAbility : ItemAbility
+{
+    public override string itemName => "WaterGem"; // Ghi đè PT itemName
+    public override string description => "This is a water gem!";
+
+    public override bool isSupport => true;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        GameObject mirror = GameObject.Find("Mirror");
+        Camera camera1 = mirror.GetComponentInChildren<Camera>();
+        GameObject player = GameObject.Find("Player");
+        PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
+        GameObject timeLine = GameObject.Find("MasterTimeline");
+        TimelineController timelineController = timeLine.GetComponent<TimelineController>();
+
+        if (camera1.enabled == true)
+        {
+            playerMovement.Floating();
+            timelineController.PlayTimeline();
+
+        }
+    }
+}
+
+public class LavaGemAbility : ItemAbility
+{
+    public override string itemName => "LavaGem"; // Ghi đè PT itemName
+    public override string description => "This is a lava gem!";
+
+    public override bool isSupport => true;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+
+        Debug.Log("Lava gem is use!");
+    }
+}
+
+
+public class HammerAbility : ItemAbility
+{
+    public override string itemName => "Hammer"; // Ghi đè PT itemName
+    public override string description => "This is a hammer!";
+
+    public override bool isSupport => false;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        GameObject player = GameObject.Find("Player");
+        PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
+        playerMovement.StartCrushing();
     }
 }
 

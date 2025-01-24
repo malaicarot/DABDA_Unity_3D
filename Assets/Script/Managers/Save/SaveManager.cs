@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class InventoryData
 {
-    public string itemID;
+    public float itemID;
     public string itemName;
     public int itemQuantity;
 
-    public InventoryData(string id, string name, int quantity)
+    public InventoryData(float id, string name, int quantity)
     {
         itemID = id;
         itemName = name;
@@ -73,7 +73,7 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    public void UpdateInventoryData(string id, string name, int quantity)
+    public void UpdateInventoryData(float id, string name, int quantity)
     {
         
         if (saveData == null)

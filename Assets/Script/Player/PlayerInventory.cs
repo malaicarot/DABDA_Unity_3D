@@ -201,7 +201,6 @@ public class PlayerInventory : PooledObject
         {
             if (item != null)
             {
-                // 
                 item.ItemRelease();
             }
             if (isSupport)

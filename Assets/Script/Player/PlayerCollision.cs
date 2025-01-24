@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
+    PlayerMovement playerMovement;
     CharacterInput _input;
     PlayerInventory takeItem;
     ItemAbility currentItem;
     Animator animator;
     private void Start()
     {
+        playerMovement = GetComponent<PlayerMovement>();
         animator = GetComponent<Animator>();
         _input = GetComponent<CharacterInput>();
         takeItem = GetComponent<PlayerInventory>();
@@ -20,10 +22,10 @@ public class PlayerCollision : MonoBehaviour
         if (other.CompareTag("Item") && _input.interact)
         {
             animator.SetBool("PickUp", true);
-            string name =  other.gameObject.name;
+            string name = other.gameObject.name;
             string correctName = name.Substring(0, name.Length - 6);
             takeItem.AddInventory(correctName);
-            SaveManager.SingletonSaveData.UpdateInventoryData("1", correctName, 1);
+            SaveManager.SingletonSaveData.UpdateInventoryData(other.gameObject.transform.GetInstanceID(), correctName, 1);
 
             Destroy(other.gameObject);
         }
@@ -34,7 +36,22 @@ public class PlayerCollision : MonoBehaviour
             currentItem.Proccess();
 
         }
+
+        if (other.CompareTag("TriggerLimit"))
+        {
+            playerMovement.isLimitJump = true;
+
+        }
         StartCoroutine(SetAnimation());
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("TriggerLimit"))
+        {
+            playerMovement.isLimitJump = false;
+
+        }
     }
 
     IEnumerator SetAnimation()

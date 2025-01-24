@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -47,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     float _terminalVelocity = 53.0f;
     float _animationBlend;
     float _targetRotation = 0;
+    public bool isLimitJump = false;
 
     // Time Out delta 
     float _fallTimeoutDelta;
@@ -190,6 +192,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 _jumpTimeoutDelta -= Time.deltaTime;
             }
+
+            if (isLimitJump)
+            {
+                _verticalVelocity = -Mathf.Sqrt(jumpHeight * -2 * gravity);
+            }
         }
         else
         {
@@ -267,9 +274,18 @@ public class PlayerMovement : MonoBehaviour
     public void Floating()
     {
         _animator.SetBool("Floating", true);
-        Debug.Log("is play");
     }
 
-
-
+    public void StartCrushing()
+    {
+        StartCoroutine(Crushing());
+    }
+    IEnumerator Crushing()
+    {
+        _animator.SetBool("Crushing", true);
+        _animator.SetBool("GrabItems", false);
+        yield return new WaitForSeconds(2.5f);
+        _animator.SetBool("Crushing", false);
+        _animator.SetBool("GrabItems", true);
+    }
 }

@@ -40,6 +40,8 @@ public class CharacterInput : MonoBehaviour
 
     }
 
+
+
     public void OnSwitchItem()
     {
         if (Input.anyKey)

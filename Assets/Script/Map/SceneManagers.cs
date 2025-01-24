@@ -4,12 +4,22 @@ using UnityEngine;
 
 public class SceneManagers : MonoBehaviour
 {
-    [SerializeField] Canvas canvas;
+    LoadScene loadScene;
     void Start()
     {
-        
+        loadScene = FindFirstObjectByType<LoadScene>();
+
         // DontDestroyOnLoad(gameObject);
         // DontDestroyOnLoad(canvas);
-        
+
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            loadScene.loadScene();
+        }
+
     }
 }

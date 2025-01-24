@@ -87,9 +87,11 @@ MonoBehaviour:
   sprint: 0
   interact: 0
   switchItem: 0
+  getInventory: 0
   cursorLooked: 1
   cursorInputForLook: 1
   analogMovement: 0
+  enableMovement: 1
   scalePosition: 0.05
 --- !u!143 &7022665336627565455
 CharacterController:
