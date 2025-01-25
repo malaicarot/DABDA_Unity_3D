@@ -283,9 +283,10 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator Crushing()
     {
         _animator.SetBool("Crushing", true);
-        _animator.SetBool("GrabItems", false);
+        _animator.SetBool("SpecialAction", true);
         yield return new WaitForSeconds(2.5f);
         _animator.SetBool("Crushing", false);
-        _animator.SetBool("GrabItems", true);
+        _animator.SetBool("SpecialAction", false);
+
     }
 }

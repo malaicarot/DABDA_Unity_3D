@@ -9,6 +9,8 @@ TagManager:
   - Mirror
   - ItemInMap
   - TriggerLimit
+  - LavaStone
+  - Hammer
   layers:
   - Default
   - TransparentFX

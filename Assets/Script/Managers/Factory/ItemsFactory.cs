@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Linq;
 using UnityEditor.Timeline.Actions;
 using System.Collections;
+using UnityEditor;
 
 /*Tạo lớp trừu tượng chung cho các chức năng của itemitem*/
 public abstract class ItemAbility
@@ -83,8 +84,6 @@ public class MirrorAbility : ItemAbility
     {
         GameObject waterGem = GameObject.Find("WaterGem");
         GameObject flower = GameObject.Find("Chrysanthemum");
-        GameObject timeline = GameObject.Find("MasterTimeline");
-        // TimelineController timelineController = timeline.GetComponent<TimelineController>();
         if (flower != null && waterGem != null)
         {
             MeshRenderer[] meshRenderer = flower.GetComponentsInChildren<MeshRenderer>();
@@ -121,7 +120,6 @@ public class WaterGemAbility : ItemAbility
         {
             playerMovement.Floating();
             timelineController.PlayTimeline();
-
         }
     }
 }
@@ -134,11 +132,19 @@ public class LavaGemAbility : ItemAbility
     public override bool isSupport => true;
     public override void Proccess() // Ghi đè PT Proccess
     {
-
-        Debug.Log("Lava gem is use!");
+        GameObject stone = GameObject.Find("Stone");
+        StoneMarker[] lavaStone = stone.GetComponentsInChildren<StoneMarker>();
+        GameObject torch = GameObject.Find("Torch");
+        ParticleSystem torchParticleSystem = torch.GetComponentInChildren<ParticleSystem>();
+        foreach (StoneMarker item in lavaStone)
+        {
+            ParticleSystem particleSystem = item.gameObject.GetComponentInChildren<ParticleSystem>();
+            if(particleSystem.isPlaying && torchParticleSystem.isPlaying){
+                Debug.Log("Done");
+            }
+        }
     }
 }
-
 
 public class HammerAbility : ItemAbility
 {
@@ -151,6 +157,51 @@ public class HammerAbility : ItemAbility
         GameObject player = GameObject.Find("Player");
         PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
         playerMovement.StartCrushing();
+    }
+}
+
+public class LavaStoneAbility : ItemAbility
+{
+    public override string itemName => "LavaStone"; // Ghi đè PT itemName
+    public override string description => "This is a hammer!";
+
+    public override bool isSupport => false;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        GameObject stone = GameObject.Find("Stone");
+        StoneMarker[] lavaStone = stone.GetComponentsInChildren<StoneMarker>();
+        GameObject player = GameObject.Find("Player");
+        GameObject hammer = GameObject.Find("Hammer");
+
+        foreach (StoneMarker item in lavaStone)
+        {
+            if (hammer != null)
+            {
+                PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
+                playerMovement.StartCrushing();
+                ParticleSystem particleSystem = item.gameObject.GetComponentInChildren<ParticleSystem>();
+                particleSystem.Play();
+            }
+        }
+    }
+}
+
+public class TorchAbility : ItemAbility
+{
+    public override string itemName => "Torch"; // Ghi đè PT itemName
+    public override string description => "This is a Torch!";
+
+    public override bool isSupport => false;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        GameObject lavaGem = GameObject.Find("LavaGem");
+        GameObject torch = GameObject.Find("Torch");
+        ParticleSystem particleSystem = torch.GetComponentInChildren<ParticleSystem>();
+
+        if (lavaGem != null)
+        {
+            particleSystem.Play();
+        }
     }
 }
 

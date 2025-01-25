@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+
+[System.Serializable]
 public class InventoryData
 {
     public float itemID;
@@ -18,6 +20,7 @@ public class InventoryData
     }
 }
 
+[System.Serializable]
 public class SaveData
 {
     public List<InventoryData> inventoryDatas;
@@ -40,12 +43,10 @@ public class SaveManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-    void Start()
-    {
         savePath = Path.Combine(Application.persistentDataPath, "SaveData.json");
         LoadData();
     }
+
 
     public void SaveData()
     {
@@ -75,7 +76,7 @@ public class SaveManager : MonoBehaviour
 
     public void UpdateInventoryData(float id, string name, int quantity)
     {
-        
+
         if (saveData == null)
         {
             saveData = new SaveData();
