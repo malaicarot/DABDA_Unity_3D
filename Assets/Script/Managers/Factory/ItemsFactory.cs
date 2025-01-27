@@ -5,7 +5,6 @@ using System.Reflection;
 using System.Linq;
 using UnityEditor.Timeline.Actions;
 using System.Collections;
-using UnityEditor;
 
 /*Tạo lớp trừu tượng chung cho các chức năng của itemitem*/
 public abstract class ItemAbility
@@ -139,7 +138,8 @@ public class LavaGemAbility : ItemAbility
         foreach (StoneMarker item in lavaStone)
         {
             ParticleSystem particleSystem = item.gameObject.GetComponentInChildren<ParticleSystem>();
-            if(particleSystem.isPlaying && torchParticleSystem.isPlaying){
+            if (particleSystem.isPlaying && torchParticleSystem.isPlaying)
+            {
                 Debug.Log("Done");
             }
         }
@@ -168,10 +168,14 @@ public class LavaStoneAbility : ItemAbility
     public override bool isSupport => false;
     public override void Proccess() // Ghi đè PT Proccess
     {
+        AbilityItems abilityItems = new AbilityItems();
         GameObject stone = GameObject.Find("Stone");
         StoneMarker[] lavaStone = stone.GetComponentsInChildren<StoneMarker>();
         GameObject player = GameObject.Find("Player");
         GameObject hammer = GameObject.Find("Hammer");
+        GameObject torch = GameObject.Find("Torch");
+        ParticleSystem torchParticleSystem = torch.GetComponentInChildren<ParticleSystem>();
+
 
         foreach (StoneMarker item in lavaStone)
         {
@@ -179,9 +183,15 @@ public class LavaStoneAbility : ItemAbility
             {
                 PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
                 playerMovement.StartCrushing();
-                ParticleSystem particleSystem = item.gameObject.GetComponentInChildren<ParticleSystem>();
-                particleSystem.Play();
+                ParticleSystem stoneParticleSystem = item.gameObject.GetComponentInChildren<ParticleSystem>();
+                stoneParticleSystem.Play();
             }
+        }
+
+        if (torchParticleSystem.isPlaying)
+        {
+            abilityItems.VocalnoErupts();
+
         }
     }
 }
@@ -194,16 +204,54 @@ public class TorchAbility : ItemAbility
     public override bool isSupport => false;
     public override void Proccess() // Ghi đè PT Proccess
     {
+        AbilityItems abilityItems = new AbilityItems();
         GameObject lavaGem = GameObject.Find("LavaGem");
         GameObject torch = GameObject.Find("Torch");
+        GameObject stone = GameObject.Find("Stone");
+        StoneMarker[] lavaStone = stone.GetComponentsInChildren<StoneMarker>();
         ParticleSystem particleSystem = torch.GetComponentInChildren<ParticleSystem>();
+        bool eruptsAble = true;
 
         if (lavaGem != null)
         {
             particleSystem.Play();
         }
+
+        foreach (StoneMarker item in lavaStone)
+        {
+            ParticleSystem stoneParticleSystem = item.gameObject.GetComponentInChildren<ParticleSystem>();
+            if (!stoneParticleSystem.isPlaying)
+            {
+                eruptsAble = false;
+                break;
+            }
+        }
+
+        if (eruptsAble)
+        {
+            abilityItems.VocalnoErupts();
+        }
     }
 }
+
+public class AbilityItems
+{
+    public void VocalnoErupts()
+    {
+        GameObject lavaEruption = GameObject.Find("LavaEruption");
+        ParticleSystem[] lavaScourceParticle = lavaEruption.GetComponentsInChildren<ParticleSystem>();
+        if (lavaEruption != null && lavaScourceParticle.Length >= 0)
+        {
+            foreach (ParticleSystem particleSystem in lavaScourceParticle)
+            {
+                particleSystem.Play();
+
+            }
+        }
+    }
+}
+
+
 
 /*Tạo lớp Factory để quản lý và tạo các đối tượng kế thừa "ItemAbility"*/
 public static class AbilityFactory

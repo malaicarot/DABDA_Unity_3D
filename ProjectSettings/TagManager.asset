@@ -11,6 +11,7 @@ TagManager:
   - TriggerLimit
   - LavaStone
   - Hammer
+  - Lava
   layers:
   - Default
   - TransparentFX

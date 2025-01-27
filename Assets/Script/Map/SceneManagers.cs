@@ -8,10 +8,6 @@ public class SceneManagers : MonoBehaviour
     void Start()
     {
         loadScene = FindFirstObjectByType<LoadScene>();
-
-        // DontDestroyOnLoad(gameObject);
-        // DontDestroyOnLoad(canvas);
-
     }
 
     void Update()

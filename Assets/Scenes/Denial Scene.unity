@@ -171,6 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1fd669780f8d749b55380fe140e845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveData:
+    inventoryDatas: []
 --- !u!1 &234160656 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6814720753067507888, guid: 1396a130bd54579499bba8c785eaa557, type: 3}
