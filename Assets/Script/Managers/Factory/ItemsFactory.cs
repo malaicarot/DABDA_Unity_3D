@@ -3,8 +3,7 @@ using System;
 using UnityEngine;
 using System.Reflection;
 using System.Linq;
-using UnityEditor.Timeline.Actions;
-using System.Collections;
+
 
 /*Tạo lớp trừu tượng chung cho các chức năng của itemitem*/
 public abstract class ItemAbility
@@ -19,7 +18,7 @@ public abstract class ItemAbility
 public class ChrysanthemumAbility : ItemAbility
 {
     public override string itemName => "Chrysanthemum"; // Ghi đè PT itemName
-    public override string description => "This is a flower!";
+    public override string description => "Liệu sau tất cả, màu sắc của nó là gì?";
 
     public override bool isSupport => false;
 
@@ -47,7 +46,7 @@ public class ChrysanthemumAbility : ItemAbility
 public class LampAbility : ItemAbility
 {
     public override string itemName => "Lamp"; // Ghi đè PT itemName
-    public override string description => "This is a lamp!";
+    public override string description => "Một chút ánh sáng giữa lúc tối tăm nhất cũng có thể là con đường dẫn đến lối thoát!";
 
     public override bool isSupport => true;
 
@@ -76,7 +75,7 @@ public class LampAbility : ItemAbility
 public class MirrorAbility : ItemAbility
 {
     public override string itemName => "Mirror"; // Ghi đè PT itemName
-    public override string description => "This is a mirror!";
+    public override string description => "Là Gương nhưng lại không thể soi! Là sự thật nhưng không thể chấp nhận!";
 
     public override bool isSupport => false;
     public override void Proccess() // Ghi đè PT Proccess
@@ -99,11 +98,10 @@ public class MirrorAbility : ItemAbility
     }
 }
 
-
 public class WaterGemAbility : ItemAbility
 {
     public override string itemName => "WaterGem"; // Ghi đè PT itemName
-    public override string description => "This is a water gem!";
+    public override string description => "Như dòng nước siết, chảy mạnh mẽ, cuốn trôi đi những cảm xúc tiêu cực. Đó là cách tốt nhất hay chỉ là sự tránh né?";
 
     public override bool isSupport => true;
     public override void Proccess() // Ghi đè PT Proccess
@@ -126,7 +124,7 @@ public class WaterGemAbility : ItemAbility
 public class LavaGemAbility : ItemAbility
 {
     public override string itemName => "LavaGem"; // Ghi đè PT itemName
-    public override string description => "This is a lava gem!";
+    public override string description => "Đốt cháy mọi thứ! Đúng vậy bằng chính sự giận dữ!";
 
     public override bool isSupport => true;
     public override void Proccess() // Ghi đè PT Proccess
@@ -149,7 +147,7 @@ public class LavaGemAbility : ItemAbility
 public class HammerAbility : ItemAbility
 {
     public override string itemName => "Hammer"; // Ghi đè PT itemName
-    public override string description => "This is a hammer!";
+    public override string description => "Trút giận liệu có giúp ta khá hơn? ";
 
     public override bool isSupport => false;
     public override void Proccess() // Ghi đè PT Proccess
@@ -163,7 +161,7 @@ public class HammerAbility : ItemAbility
 public class LavaStoneAbility : ItemAbility
 {
     public override string itemName => "LavaStone"; // Ghi đè PT itemName
-    public override string description => "This is a hammer!";
+    public override string description => "Bạn không thể tưởng tượng được sự bùng nổ của cơn giận dữ đâu!";
 
     public override bool isSupport => false;
     public override void Proccess() // Ghi đè PT Proccess
@@ -199,7 +197,7 @@ public class LavaStoneAbility : ItemAbility
 public class TorchAbility : ItemAbility
 {
     public override string itemName => "Torch"; // Ghi đè PT itemName
-    public override string description => "This is a Torch!";
+    public override string description => "Ngọc đuốc dùng để làm gì nhỉ?";
 
     public override bool isSupport => false;
     public override void Proccess() // Ghi đè PT Proccess
@@ -245,7 +243,6 @@ public class AbilityItems
             foreach (ParticleSystem particleSystem in lavaScourceParticle)
             {
                 particleSystem.Play();
-
             }
         }
     }

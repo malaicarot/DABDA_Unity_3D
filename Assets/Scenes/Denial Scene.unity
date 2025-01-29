@@ -1466,6 +1466,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1821331311}
     - target: {fileID: 1982952516850912061, guid: 1c6766b4298ab544f9474cdecfa5c55c, type: 3}
+      propertyPath: itemSprite.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1982952516850912061, guid: 1c6766b4298ab544f9474cdecfa5c55c, type: 3}
+      propertyPath: itemSprite.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 91d38e6b733491d4199fcd58e4d10c08, type: 3}
+    - target: {fileID: 1982952516850912061, guid: 1c6766b4298ab544f9474cdecfa5c55c, type: 3}
+      propertyPath: itemSprite.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 30a990c8981469b4097566efec1e04a0, type: 3}
+    - target: {fileID: 1982952516850912061, guid: 1c6766b4298ab544f9474cdecfa5c55c, type: 3}
       propertyPath: inventoryUI.Array.data[0]
       value: 
       objectReference: {fileID: 6489620113679328526}

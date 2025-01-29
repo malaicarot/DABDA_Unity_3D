@@ -8,12 +8,14 @@ public class PlayerCollision : MonoBehaviour
     PlayerInventory takeItem;
     ItemAbility currentItem;
     Animator animator;
+    LoadScene loadScene;
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
         animator = GetComponent<Animator>();
         _input = GetComponent<CharacterInput>();
         takeItem = GetComponent<PlayerInventory>();
+        loadScene = FindFirstObjectByType<LoadScene>();
     }
 
 

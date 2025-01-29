@@ -12,9 +12,7 @@ public class TriggerActive : MonoBehaviour
 
     void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Player")){
-            loadScene.loadScene();
+            loadScene.LoadNextScene();
         }
     }
-
-    
 }

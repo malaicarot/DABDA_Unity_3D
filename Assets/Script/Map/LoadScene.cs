@@ -4,19 +4,22 @@ using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
+    
 
-
-    public void loadScene(){
-        StartCoroutine(WaitForLoad());
+    public void LoadNextScene(){
+        StartCoroutine(WaitForLoad(1));
     }
-    void LoadSceneManager()
+    public void LoadCurrentScene(){
+        StartCoroutine(WaitForLoad(0));
+    }
+    void LoadSceneManager(int nextIndex)
     {
         int index = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(index + 1);        
+        SceneManager.LoadScene(index + nextIndex);        
     }
 
-    IEnumerator WaitForLoad(){
+    IEnumerator WaitForLoad(int nextIndex){
         yield return new WaitForSeconds(2);
-        LoadSceneManager();
+        LoadSceneManager(nextIndex);
     }
 }
