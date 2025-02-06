@@ -42,7 +42,6 @@ public class ChrysanthemumAbility : ItemAbility
     }
 }
 
-
 public class LampAbility : ItemAbility
 {
     public override string itemName => "Lamp"; // Ghi đè PT itemName
@@ -133,11 +132,17 @@ public class LavaGemAbility : ItemAbility
         StoneMarker[] lavaStone = stone.GetComponentsInChildren<StoneMarker>();
         GameObject torch = GameObject.Find("Torch");
         ParticleSystem torchParticleSystem = torch.GetComponentInChildren<ParticleSystem>();
+        GameObject timeLine = GameObject.Find("MasterTimeLine");
+        Debug.Log(timeLine);
+        
+        TimelineController timelineController = timeLine.GetComponent<TimelineController>();
+        Debug.Log(timelineController);
         foreach (StoneMarker item in lavaStone)
         {
             ParticleSystem particleSystem = item.gameObject.GetComponentInChildren<ParticleSystem>();
             if (particleSystem.isPlaying && torchParticleSystem.isPlaying)
             {
+                timelineController.PlayTimeline();
                 Debug.Log("Done");
             }
         }
@@ -189,7 +194,6 @@ public class LavaStoneAbility : ItemAbility
         if (torchParticleSystem.isPlaying)
         {
             abilityItems.VocalnoErupts();
-
         }
     }
 }

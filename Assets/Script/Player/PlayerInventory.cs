@@ -157,6 +157,8 @@ public class PlayerInventory : PooledObject
             item.ItemRelease();
         }
         item = ItemsPool.SingleTonItemsPool.GetItem(name, itemPosition.position, itemPosition.rotation);
+        BoxCollider boxCollider = item.GetComponent<BoxCollider>();
+        boxCollider.enabled = false;
         Canvas canvas = item.GetComponentInChildren<Canvas>();
         canvas.enabled = false;
         return item;

@@ -75,7 +75,6 @@ public class InventoryManagers : MonoBehaviour
         InventoryUI.SetActive(false);
         SpawnSlotInbag(slotInBagRowSpecial, slotInBagColSpecial, startPosYSpecial, ItemSpecialPanel, slotSpecial);
         SpawnSlotInbag(slotInBagRow, slotInBagCol, startPosY, ItemNormalPanel, slotNormal);
-
     }
     void Update()
     {
