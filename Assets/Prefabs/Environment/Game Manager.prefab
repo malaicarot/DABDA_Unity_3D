@@ -92,7 +92,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe70ec43cd589774b9fa391811e55de0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
 --- !u!1 &3969172274921062577
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,6 +141,8 @@ MonoBehaviour:
   - {fileID: 4906942139342058773, guid: 7c8fce4d4f0791e4db753f7e34c4e1d8, type: 3}
   - {fileID: 610610818861682287, guid: cb55bc3d158ca7446a3ae77d8d0113e3, type: 3}
   - {fileID: 5680089201986500669, guid: 5b2d6130fd76bc24694cbeee613659f1, type: 3}
+  - {fileID: 3899367540123768235, guid: 691600d554451bf49b72009643d56465, type: 3}
+  - {fileID: 7334602964641910964, guid: 705adf067051ded4bac38edaea18568d, type: 3}
 --- !u!1 &5569815542787447690
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,6 +251,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 171e919c9d3b22e449a652a90e18474b, type: 3}
   - {fileID: 21300000, guid: 5123820eb801b8545ad87831e0fb2868, type: 3}
   - {fileID: 21300000, guid: ca13e0585540e7b48ac5862df64e1fcd, type: 3}
+  - {fileID: 21300000, guid: 91d38e6b733491d4199fcd58e4d10c08, type: 3}
+  - {fileID: 21300000, guid: 30a990c8981469b4097566efec1e04a0, type: 3}
   InventoryUI: {fileID: 0}
   itemNameList: []
   itemSupportNameList: []

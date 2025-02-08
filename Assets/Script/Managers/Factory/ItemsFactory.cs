@@ -236,6 +236,34 @@ public class TorchAbility : ItemAbility
     }
 }
 
+
+
+public class AngleStatueAbility : ItemAbility
+{
+    public override string itemName => "AngelStatue"; // Ghi đè PT itemName
+    public override string description => "Đôi khi, chấp nhận sự thật đau lòng là bước đầu tiên để giải phóng trái tim và tìm lại bình yên!";
+
+    public override bool isSupport => false;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        GameObject timeline = GameObject.Find("GemTimeLine");
+        TimelineController timelineController = timeline.GetComponent<TimelineController>();
+        timelineController.PlayTimeline();
+    }
+}
+
+public class LightGemAbility : ItemAbility
+{
+    public override string itemName => "LightGem"; // Ghi đè PT itemName
+    public override string description => "";
+
+    public override bool isSupport => true;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        Debug.Log("Light Gem!");
+    }
+}
+
 public class AbilityItems
 {
     public void VocalnoErupts()

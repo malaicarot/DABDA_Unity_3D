@@ -289,4 +289,9 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetBool("SpecialAction", false);
 
     }
+
+    public void ApplyForce(float force)
+    {
+        _verticalVelocity = force;
+    }
 }
