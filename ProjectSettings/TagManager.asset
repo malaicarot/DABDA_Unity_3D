@@ -12,6 +12,7 @@ TagManager:
   - LavaStone
   - Hammer
   - Lava
+  - LastScene
   layers:
   - Default
   - TransparentFX
