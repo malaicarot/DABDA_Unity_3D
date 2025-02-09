@@ -10,9 +10,18 @@ public class TriggerActive : MonoBehaviour
         loadScene = FindFirstObjectByType<LoadScene>();
     }
 
-    void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("Player")){
-            loadScene.LoadNextScene();
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (gameObject.CompareTag("LastScene"))
+            {
+                loadScene.LoadLastScene();
+            }
+            else
+            {
+                loadScene.LoadNextScene();
+            }
         }
     }
 }

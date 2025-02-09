@@ -1,0 +1,159 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &652852257552610726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6363182132363144815}
+  m_Layer: 0
+  m_Name: SwordKnightPrefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6363182132363144815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652852257552610726}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.6566372, z: 0.14940059}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7400418127296842677}
+  - {fileID: 6530817571279434093}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1165745375588461367
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6363182132363144815}
+    m_Modifications:
+    - target: {fileID: 8547302324645847170, guid: 1059b37232cea764fa0722f374f3ac94, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547302324645847170, guid: 1059b37232cea764fa0722f374f3ac94, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547302324645847170, guid: 1059b37232cea764fa0722f374f3ac94, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547302324645847170, guid: 1059b37232cea764fa0722f374f3ac94, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547302324645847170, guid: 1059b37232cea764fa0722f374f3ac94, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547302324645847170, guid: 1059b37232cea764fa0722f374f3ac94, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547302324645847170, guid: 1059b37232cea764fa0722f374f3ac94, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547302324645847170, guid: 1059b37232cea764fa0722f374f3ac94, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547302324645847170, guid: 1059b37232cea764fa0722f374f3ac94, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8547302324645847170, guid: 1059b37232cea764fa0722f374f3ac94, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9067380479750224440, guid: 1059b37232cea764fa0722f374f3ac94, type: 3}
+      propertyPath: m_Name
+      value: Knight_Statue_Shield
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1059b37232cea764fa0722f374f3ac94, type: 3}
+--- !u!4 &7400418127296842677 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8547302324645847170, guid: 1059b37232cea764fa0722f374f3ac94, type: 3}
+  m_PrefabInstance: {fileID: 1165745375588461367}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2119416764941802584
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6363182132363144815}
+    m_Modifications:
+    - target: {fileID: 5173423945929485621, guid: 6d1e6a12356884144957bf15485bcd5c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173423945929485621, guid: 6d1e6a12356884144957bf15485bcd5c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173423945929485621, guid: 6d1e6a12356884144957bf15485bcd5c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173423945929485621, guid: 6d1e6a12356884144957bf15485bcd5c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173423945929485621, guid: 6d1e6a12356884144957bf15485bcd5c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173423945929485621, guid: 6d1e6a12356884144957bf15485bcd5c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173423945929485621, guid: 6d1e6a12356884144957bf15485bcd5c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173423945929485621, guid: 6d1e6a12356884144957bf15485bcd5c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173423945929485621, guid: 6d1e6a12356884144957bf15485bcd5c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173423945929485621, guid: 6d1e6a12356884144957bf15485bcd5c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5512512629329901455, guid: 6d1e6a12356884144957bf15485bcd5c, type: 3}
+      propertyPath: m_Name
+      value: Sword
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6d1e6a12356884144957bf15485bcd5c, type: 3}
+--- !u!4 &6530817571279434093 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5173423945929485621, guid: 6d1e6a12356884144957bf15485bcd5c, type: 3}
+  m_PrefabInstance: {fileID: 2119416764941802584}
+  m_PrefabAsset: {fileID: 0}

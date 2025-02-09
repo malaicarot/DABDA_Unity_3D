@@ -134,7 +134,7 @@ public class LavaGemAbility : ItemAbility
         ParticleSystem torchParticleSystem = torch.GetComponentInChildren<ParticleSystem>();
         GameObject timeLine = GameObject.Find("MasterTimeLine");
         Debug.Log(timeLine);
-        
+
         TimelineController timelineController = timeLine.GetComponent<TimelineController>();
         Debug.Log(timelineController);
         foreach (StoneMarker item in lavaStone)
@@ -241,14 +241,60 @@ public class TorchAbility : ItemAbility
 public class AngleStatueAbility : ItemAbility
 {
     public override string itemName => "AngelStatue"; // Ghi đè PT itemName
-    public override string description => "Đôi khi, chấp nhận sự thật đau lòng là bước đầu tiên để giải phóng trái tim và tìm lại bình yên!";
-
+    public override string description => "Cầu nguyện chỉ là cách tránh né thực tại. Hãy tự mình đối mặt và giải quyết vấn đề của ngươi!";
     public override bool isSupport => false;
     public override void Proccess() // Ghi đè PT Proccess
     {
         GameObject timeline = GameObject.Find("GemTimeLine");
         TimelineController timelineController = timeline.GetComponent<TimelineController>();
         timelineController.PlayTimeline();
+    }
+}
+
+public class ShieldKnightAbility : ItemAbility
+{
+    public override string itemName => "ShieldKnight"; // Ghi đè PT itemName
+    public override string description => "Đôi khi, chấp nhận sự thật đau lòng là bước đầu tiên để giải phóng trái tim và tìm lại bình yên!";
+
+    public override bool isSupport => false;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+
+        GameObject swordKnight = GameObject.Find("SwordKnight");
+        // BoxCollider swordKnightboxCollider = swordKnight.GetComponent<BoxCollider>();
+        // swordKnightboxCollider.enabled = false;
+
+        GameObject depression = GameObject.Find("AcceptanceCircle");
+        GameObject loadScene = GameObject.Find("TriggerLoadScene_5");
+        ParticleSystem particleSystem = depression.GetComponentInChildren<ParticleSystem>();
+        particleSystem.Play();
+        BoxCollider boxCollider = loadScene.GetComponent<BoxCollider>();
+        boxCollider.enabled = true;
+
+    }
+}
+
+public class SwordKnightAbility : ItemAbility
+{
+    public override string itemName => "SwordKnight"; // Ghi đè PT itemName
+    public override string description => "Đôi khi, chấp nhận sự thật đau lòng là bước đầu tiên để giải phóng trái tim và tìm lại bình yên!";
+
+    public override bool isSupport => false;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        GameObject shieldKnight = GameObject.Find("ShieldKnight");
+        // BoxCollider shieldKnightboxCollider = shieldKnight.GetComponentIndex[00<BoxCollider>();
+        // shieldKnightboxCollider.enabled = false;
+
+
+        GameObject depression = GameObject.Find("DepressionCircle");
+        GameObject loadScene = GameObject.Find("TriggerLoadScene_4");
+        ParticleSystem particleSystem = depression.GetComponentInChildren<ParticleSystem>();
+        particleSystem.Play();
+        BoxCollider boxCollider = loadScene.GetComponent<BoxCollider>();
+        boxCollider.enabled = true;
+
+
     }
 }
 
