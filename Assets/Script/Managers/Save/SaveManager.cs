@@ -21,16 +21,57 @@ public class InventoryData
 }
 
 [System.Serializable]
+public class MapData
+{
+    public int mapIndex;
+    public float xPosionTion;
+    public float yPosionTion;
+    public float zPosionTion;
+
+
+
+    public MapData(int index, float x, float y, float z)
+    {
+        mapIndex = index;
+        xPosionTion = x;
+        yPosionTion = y;
+        zPosionTion = z;
+
+    }
+}
+
+[System.Serializable]
 public class SaveData
 {
     public List<InventoryData> inventoryDatas;
-
-
 }
+
+[System.Serializable]
+public class CheckPoint
+{
+    public List<MapData> checkpointDatas;
+}
+
+[System.Serializable]
+public class CombinedData
+{
+    public SaveData _saveData;
+    public CheckPoint _checkPointData;
+
+    public CombinedData(SaveData saveData, CheckPoint checkPointData)
+    {
+        this._saveData = saveData;
+        this._checkPointData = checkPointData;
+    }
+}
+
+
 public class SaveManager : MonoBehaviour
 {
     string savePath = "";
     public SaveData saveData;
+    public CheckPoint checkPointData;
+
     public static SaveManager SingletonSaveData;
     void Awake()
     {
@@ -44,24 +85,28 @@ public class SaveManager : MonoBehaviour
             Destroy(gameObject);
         }
         savePath = Path.Combine(Application.persistentDataPath, "SaveData.json");
-        LoadData();
+        LoadCombinedData();
     }
 
 
-    public void SaveData()
+    public void SaveCombinedData()
     {
-        string jsonData = JsonUtility.ToJson(saveData, true);
+        CombinedData combinedData = new CombinedData(saveData, checkPointData);
+        string jsonData = JsonUtility.ToJson(combinedData, true);
         File.WriteAllText(savePath, jsonData);
         Debug.Log(savePath + "Call save data success!");
 
     }
 
-    public void LoadData()
+
+    public void LoadCombinedData()
     {
         if (File.Exists(savePath)) // DA CO FILE
         {
             string jsonData = File.ReadAllText(savePath);
-            saveData = JsonUtility.FromJson<SaveData>(jsonData);
+            CombinedData combinedData = JsonUtility.FromJson<CombinedData>(jsonData);
+            saveData = combinedData._saveData;
+            checkPointData = combinedData._checkPointData;
             Debug.Log("Load data Success!");
         }
         else
@@ -70,9 +115,31 @@ public class SaveManager : MonoBehaviour
             {
                 inventoryDatas = new List<InventoryData>()
             };
-            SaveData();
+            checkPointData = new CheckPoint
+            {
+                checkpointDatas = new List<MapData>()
+            };
+            SaveCombinedData();
         }
     }
+
+    // public void LoadCheckpoint()
+    // {
+    //     if (File.Exists(savePath)) // DA CO FILE
+    //     {
+    //         string jsonData = File.ReadAllText(savePath);
+    //         checkPointData = JsonUtility.FromJson<CheckPoint>(jsonData);
+    //         Debug.Log("Load map Success!");
+    //     }
+    //     else
+    //     {
+    //         checkPointData = new CheckPoint
+    //         {
+    //             checkpointDatas = new List<MapData>()
+    //         };
+    //         SaveCheckpoint();
+    //     }
+    // }
 
     public void UpdateInventoryData(float id, string name, int quantity)
     {
@@ -80,12 +147,12 @@ public class SaveManager : MonoBehaviour
         if (saveData == null)
         {
             saveData = new SaveData();
-
         }
         if (saveData.inventoryDatas == null)
         {
             saveData.inventoryDatas = new List<InventoryData>();
         }
+
         for (int i = 0; i < saveData.inventoryDatas.Count; i++)
         {
             if (saveData.inventoryDatas[i].itemID == id)
@@ -94,16 +161,39 @@ public class SaveManager : MonoBehaviour
                 break;
             }
         }
-
         InventoryData data = new InventoryData(id, name, quantity);
         saveData.inventoryDatas.Add(data);
 
-        foreach (var item in saveData.inventoryDatas)
+        // foreach (var item in saveData.inventoryDatas)
+        // {
+        //     Debug.Log("Item ID: " + item.itemID);
+        //     Debug.Log("Item Name: " + item.itemName);
+        //     Debug.Log("Item Quantity: " + item.itemQuantity);
+        // }
+        SaveCombinedData();
+    }
+
+    public void UpdateCheckpointData(int map, float x, float y, float z)
+    {
+
+        if (checkPointData == null)
         {
-            Debug.Log("Item ID: " + item.itemID);
-            Debug.Log("Item Name: " + item.itemName);
-            Debug.Log("Item Quantity: " + item.itemQuantity);
+            checkPointData = new CheckPoint();
         }
-        SaveData();
+        if (checkPointData.checkpointDatas == null)
+        {
+            checkPointData.checkpointDatas = new List<MapData>();
+        }
+        MapData checkpoint = new MapData(map, x, y, z);
+        checkPointData.checkpointDatas.Add(checkpoint);
+        foreach (var item in checkPointData.checkpointDatas)
+        {
+            Debug.Log("map " + item.mapIndex);
+            Debug.Log("x " + item.xPosionTion);
+            Debug.Log("y " + item.yPosionTion);
+            Debug.Log("z " + item.zPosionTion);
+        }
+
+        SaveCombinedData();
     }
 }

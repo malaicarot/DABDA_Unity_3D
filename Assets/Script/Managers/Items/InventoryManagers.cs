@@ -14,11 +14,9 @@ public class InventoryManagers : MonoBehaviour
     [SerializeField] GameObject ItemNormalPanel; // Prefabs để nhóm các item bình thường (cha của slot in bag)
     [SerializeField] GameObject ItemSpecialPanel; // Prefabs để nhóm các item đặc biệt (cha của slot in bag)
 
-
     /**********************************************************/
     [SerializeField] Image inventorySlot;          // Prefab sinh hinh item
     [SerializeField] List<Sprite> itemSprite;      // Hinh anh item
-
 
     [SerializeField] GameObject InventoryUI;
     public List<string> itemNameList;

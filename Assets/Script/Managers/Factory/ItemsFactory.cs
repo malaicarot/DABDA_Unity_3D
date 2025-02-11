@@ -3,6 +3,7 @@ using System;
 using UnityEngine;
 using System.Reflection;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 
 /*Tạo lớp trừu tượng chung cho các chức năng của itemitem*/
@@ -81,6 +82,10 @@ public class MirrorAbility : ItemAbility
     {
         GameObject waterGem = GameObject.Find("WaterGem");
         GameObject flower = GameObject.Find("Chrysanthemum");
+        GameObject player = GameObject.Find("Player");
+        SaveManager.SingletonSaveData.UpdateCheckpointData(SceneManager.GetActiveScene().buildIndex, player.transform.position.x, player.transform.position.y, player.transform.position.z);
+
+
         if (flower != null && waterGem != null)
         {
             MeshRenderer[] meshRenderer = flower.GetComponentsInChildren<MeshRenderer>();
@@ -235,8 +240,6 @@ public class TorchAbility : ItemAbility
         }
     }
 }
-
-
 
 public class AngleStatueAbility : ItemAbility
 {
