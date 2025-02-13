@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
-
+using Random = UnityEngine.Random;
 public class PlayerMovement : MonoBehaviour
 {
     //Player
@@ -28,9 +30,14 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] float deltaTime = 5;
 
+    [SerializeField] AudioClip LandingAudio;
+    [SerializeField] AudioClip[] FootStepAudio;
+    [Range(0, 1)][SerializeField] float FootstepAudioVolume = 0.5f;
+
+
+
+
     bool isGrounded = true;
-
-
     Animator _animator;
     CharacterInput _input;
     CharacterController _controller;
@@ -75,8 +82,6 @@ public class PlayerMovement : MonoBehaviour
     }
     void Start()
     {
-        // DontDestroyOnLoad(gameObject);
-
         _cinemachineTargetYaw = CinemachineTarget.transform.rotation.eulerAngles.y;
         _hasAnimator = TryGetComponent(out _animator);
         _controller = GetComponent<CharacterController>();
@@ -269,6 +274,27 @@ public class PlayerMovement : MonoBehaviour
         animIDGrounded = Animator.StringToHash("Grounded");
         animIDFreeFall = Animator.StringToHash("FreeFall");
         animIDJump = Animator.StringToHash("Jump");
+    }
+
+
+    void OnFootStep(AnimationEvent animationEvent)
+    {
+        if (animationEvent.animatorClipInfo.weight > 0.8f)
+        {
+            if (FootStepAudio.Length > 0)
+            {
+                var index = Random.Range(0, FootStepAudio.Length - 1);
+                AudioSource.PlayClipAtPoint(FootStepAudio[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
+            }
+        }
+
+    }
+    void OnLand(AnimationEvent animationEvent)
+    {
+        if (animationEvent.animatorClipInfo.weight > 0.8f)
+        {
+            AudioSource.PlayClipAtPoint(LandingAudio, transform.TransformPoint(_controller.center), FootstepAudioVolume);
+        }
     }
 
     public void Floating()
