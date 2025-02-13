@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class ButtonHadler : MonoBehaviour
 {
-    [SerializeField] GameObject StartUI;
+    [SerializeField] GameObject startUI;
 
     PlayerBeforeStart playerBeforeStart;
 
     private void Start()
     {
         playerBeforeStart = FindFirstObjectByType<PlayerBeforeStart>();
+
+        if (!(SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count > 0))
+        {
+            startUI.SetActive(true);
+        }
+        else
+        {
+            startUI.SetActive(false);
+        }
     }
 
 
@@ -19,7 +28,7 @@ public class ButtonHadler : MonoBehaviour
         playerBeforeStart.EnableFeature(true);
         playerBeforeStart.CursorHandle(true);
         playerBeforeStart.setCameraRoot(true);
-        StartUI.SetActive(false);
+        startUI.SetActive(false);
 
     }
 

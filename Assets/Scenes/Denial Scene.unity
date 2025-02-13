@@ -127,52 +127,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4261348165502715261, guid: 62a296ff900631d42af8ecb6bc10c683, type: 3}
   m_PrefabInstance: {fileID: 1192959918}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &217229431
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 217229432}
-  - component: {fileID: 217229433}
-  m_Layer: 0
-  m_Name: SaveManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &217229432
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217229431}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &217229433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217229431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e1fd669780f8d749b55380fe140e845, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveData:
-    inventoryDatas: []
 --- !u!1 &234160656 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6814720753067507888, guid: 1396a130bd54579499bba8c785eaa557, type: 3}
@@ -1308,10 +1262,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 108388304806711873, guid: 1396a130bd54579499bba8c785eaa557, type: 3}
+      propertyPath: startUI
+      value: 
+      objectReference: {fileID: 6756856060500933307}
+    - target: {fileID: 2245590273018012364, guid: 1396a130bd54579499bba8c785eaa557, type: 3}
+      propertyPath: StartUI
+      value: 
+      objectReference: {fileID: 6756856060500933307}
+    - target: {fileID: 2245590273018012364, guid: 1396a130bd54579499bba8c785eaa557, type: 3}
+      propertyPath: startUI
+      value: 
+      objectReference: {fileID: 6756856060500933307}
     - target: {fileID: 2540106125656570368, guid: 1396a130bd54579499bba8c785eaa557, type: 3}
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3956776901684649755, guid: 1396a130bd54579499bba8c785eaa557, type: 3}
+      propertyPath: startUI
+      value: 
+      objectReference: {fileID: 6756856060500933307}
     - target: {fileID: 6618734941807216183, guid: 1396a130bd54579499bba8c785eaa557, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1401,6 +1371,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1396a130bd54579499bba8c785eaa557, type: 3}
+--- !u!1 &6756856060500933307 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7176311197548214338, guid: 1396a130bd54579499bba8c785eaa557, type: 3}
+  m_PrefabInstance: {fileID: 6756856060500933306}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7446785443585018990
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1471,7 +1446,7 @@ PrefabInstance:
       objectReference: {fileID: 1821331311}
     - target: {fileID: 1982952516850912061, guid: 1c6766b4298ab544f9474cdecfa5c55c, type: 3}
       propertyPath: itemSprite.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1982952516850912061, guid: 1c6766b4298ab544f9474cdecfa5c55c, type: 3}
       propertyPath: itemSprite.Array.data[3]
@@ -1481,6 +1456,10 @@ PrefabInstance:
       propertyPath: itemSprite.Array.data[4]
       value: 
       objectReference: {fileID: 21300000, guid: 30a990c8981469b4097566efec1e04a0, type: 3}
+    - target: {fileID: 1982952516850912061, guid: 1c6766b4298ab544f9474cdecfa5c55c, type: 3}
+      propertyPath: itemSprite.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: 1388e906003d9a34fa35c758788bf941, type: 3}
     - target: {fileID: 1982952516850912061, guid: 1c6766b4298ab544f9474cdecfa5c55c, type: 3}
       propertyPath: inventoryUI.Array.data[0]
       value: 
@@ -2410,7 +2389,6 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 5554381604075655784}
   - {fileID: 935331895}
-  - {fileID: 217229432}
   - {fileID: 7446785443585018990}
   - {fileID: 6756856060500933306}
   - {fileID: 1999772210732176932}

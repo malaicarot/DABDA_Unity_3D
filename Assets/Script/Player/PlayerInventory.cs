@@ -30,7 +30,7 @@ public class PlayerInventory : PooledObject
         inventoryManagers = FindFirstObjectByType<InventoryManagers>();
         animator = GetComponent<Animator>();
 
-        if (SaveManager.SingletonSaveData.saveData != null)
+        if (SaveManager.SingletonSaveData.saveData != null && inventoryManagers.itemSupportNameList != null && inventoryManagers.itemNameList != null)
         {
             foreach (var item in SaveManager.SingletonSaveData.saveData.inventoryDatas)
             {

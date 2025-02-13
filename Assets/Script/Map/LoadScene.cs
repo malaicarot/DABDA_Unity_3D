@@ -4,7 +4,12 @@ using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
-    
+    void Start() {
+        SaveManager.SingletonSaveData.LoadCombinedData();
+    }
+    public void LoadSaveScene(){
+        SceneManager.LoadScene(0);
+    }
 
     public void LoadNextScene(){
         StartCoroutine(WaitForLoad(1));
@@ -21,9 +26,7 @@ public class LoadScene : MonoBehaviour
         int index = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(index + nextIndex);        
     }
-    // IEnumerator WaitLoad(){
-    //     SceneManager.LoadScene(4);
-    // }
+
 
     IEnumerator WaitForLoad(int nextIndex){
         yield return new WaitForSeconds(2);

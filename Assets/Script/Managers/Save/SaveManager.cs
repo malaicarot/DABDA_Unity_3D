@@ -105,41 +105,39 @@ public class SaveManager : MonoBehaviour
         {
             string jsonData = File.ReadAllText(savePath);
             CombinedData combinedData = JsonUtility.FromJson<CombinedData>(jsonData);
-            saveData = combinedData._saveData;
-            checkPointData = combinedData._checkPointData;
-            Debug.Log("Load data Success!");
+            if (combinedData != null)
+            {
+                saveData = combinedData._saveData ?? new SaveData
+                {
+                    inventoryDatas = new List<InventoryData>()
+                };
+                checkPointData = combinedData._checkPointData ?? new CheckPoint
+                {
+                    checkpointDatas = new List<MapData>()
+                }; ;
+            }
+            else
+            {
+                saveData = new SaveData { inventoryDatas = new List<InventoryData>() };
+                checkPointData = new CheckPoint { checkpointDatas = new List<MapData>() };
+
+
+                Debug.Log("Load data Success!");
+            }
         }
         else
-        {
-            saveData = new SaveData
             {
-                inventoryDatas = new List<InventoryData>()
-            };
-            checkPointData = new CheckPoint
-            {
-                checkpointDatas = new List<MapData>()
-            };
-            SaveCombinedData();
+                saveData = new SaveData
+                {
+                    inventoryDatas = new List<InventoryData>()
+                };
+                checkPointData = new CheckPoint
+                {
+                    checkpointDatas = new List<MapData>()
+                };
+                SaveCombinedData();
+            }
         }
-    }
-
-    // public void LoadCheckpoint()
-    // {
-    //     if (File.Exists(savePath)) // DA CO FILE
-    //     {
-    //         string jsonData = File.ReadAllText(savePath);
-    //         checkPointData = JsonUtility.FromJson<CheckPoint>(jsonData);
-    //         Debug.Log("Load map Success!");
-    //     }
-    //     else
-    //     {
-    //         checkPointData = new CheckPoint
-    //         {
-    //             checkpointDatas = new List<MapData>()
-    //         };
-    //         SaveCheckpoint();
-    //     }
-    // }
 
     public void UpdateInventoryData(float id, string name, int quantity)
     {

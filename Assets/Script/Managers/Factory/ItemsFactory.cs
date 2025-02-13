@@ -77,14 +77,14 @@ public class MirrorAbility : ItemAbility
     public override string itemName => "Mirror"; // Ghi đè PT itemName
     public override string description => "Là Gương nhưng lại không thể soi! Là sự thật nhưng không thể chấp nhận!";
 
+
     public override bool isSupport => false;
     public override void Proccess() // Ghi đè PT Proccess
     {
+        AbilityItems abilityItems = new AbilityItems();
+        abilityItems.CheckPoint();
         GameObject waterGem = GameObject.Find("WaterGem");
         GameObject flower = GameObject.Find("Chrysanthemum");
-        GameObject player = GameObject.Find("Player");
-        SaveManager.SingletonSaveData.UpdateCheckpointData(SceneManager.GetActiveScene().buildIndex, player.transform.position.x, player.transform.position.y, player.transform.position.z);
-
 
         if (flower != null && waterGem != null)
         {
@@ -212,6 +212,7 @@ public class TorchAbility : ItemAbility
     public override void Proccess() // Ghi đè PT Proccess
     {
         AbilityItems abilityItems = new AbilityItems();
+        abilityItems.CheckPoint();
         GameObject lavaGem = GameObject.Find("LavaGem");
         GameObject torch = GameObject.Find("Torch");
         GameObject stone = GameObject.Find("Stone");
@@ -248,6 +249,8 @@ public class AngleStatueAbility : ItemAbility
     public override bool isSupport => false;
     public override void Proccess() // Ghi đè PT Proccess
     {
+        AbilityItems abilityItems = new AbilityItems();
+        abilityItems.CheckPoint();
         GameObject timeline = GameObject.Find("GemTimeLine");
         TimelineController timelineController = timeline.GetComponent<TimelineController>();
         timelineController.PlayTimeline();
@@ -262,11 +265,11 @@ public class ShieldKnightAbility : ItemAbility
     public override bool isSupport => false;
     public override void Proccess() // Ghi đè PT Proccess
     {
-
+        AbilityItems abilityItems = new AbilityItems();
+        abilityItems.CheckPoint();
         GameObject swordKnight = GameObject.Find("SwordKnight");
         // BoxCollider swordKnightboxCollider = swordKnight.GetComponent<BoxCollider>();
         // swordKnightboxCollider.enabled = false;
-
         GameObject depression = GameObject.Find("AcceptanceCircle");
         GameObject loadScene = GameObject.Find("TriggerLoadScene_5");
         ParticleSystem particleSystem = depression.GetComponentInChildren<ParticleSystem>();
@@ -285,6 +288,8 @@ public class SwordKnightAbility : ItemAbility
     public override bool isSupport => false;
     public override void Proccess() // Ghi đè PT Proccess
     {
+        AbilityItems abilityItems = new AbilityItems();
+        abilityItems.CheckPoint();
         GameObject shieldKnight = GameObject.Find("ShieldKnight");
         // BoxCollider shieldKnightboxCollider = shieldKnight.GetComponentIndex[00<BoxCollider>();
         // shieldKnightboxCollider.enabled = false;
@@ -327,7 +332,14 @@ public class AbilityItems
             }
         }
     }
+
+    public void CheckPoint()
+    {
+        GameObject player = GameObject.Find("Player");
+        SaveManager.SingletonSaveData.UpdateCheckpointData(SceneManager.GetActiveScene().buildIndex, player.transform.position.x, player.transform.position.y, player.transform.position.z);
+    }
 }
+
 
 
 

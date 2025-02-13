@@ -49,7 +49,7 @@ public class InventoryManagers : MonoBehaviour
     List<Image> slotSpecial;
 
 
-    void Start()
+    void Awake()
     {
         _input = FindFirstObjectByType<CharacterInput>();
         imageItemsEmptyList = new List<Image>();

@@ -1,5 +1,6 @@
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerBeforeStart : MonoBehaviour
 {
@@ -7,8 +8,11 @@ public class PlayerBeforeStart : MonoBehaviour
     Animator animator;
     [SerializeField] GameObject cameraRoot;
     [SerializeField] Vector3 positionCamera;
-    Vector3 positionCameraRoot;
     CharacterInput _input;
+
+    float xPos;
+    float yPos;
+    float zPos;
 
     void Start()
     {
@@ -16,10 +20,16 @@ public class PlayerBeforeStart : MonoBehaviour
         animator = GetComponent<Animator>();
         _input = GetComponent<CharacterInput>();
 
-        EnableFeature(false);
-        CursorHandle(false);
-        setCameraRoot(false);
-
+        if (!(SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count > 0))
+        {
+            EnableFeature(false);
+            CursorHandle(false);
+            setCameraRoot(false);
+        }
+        else
+        {
+            StartGame();
+        }
     }
 
 
@@ -46,7 +56,19 @@ public class PlayerBeforeStart : MonoBehaviour
         characterController.enabled = enableFeature;
         animator.SetBool("Falling", !enableFeature);
     }
+    public void StartGame()
+    {
+        EnableFeature(true);
+        CursorHandle(true);
+        int index = SceneManager.GetActiveScene().buildIndex;
+        if (SaveManager.SingletonSaveData.checkPointData.checkpointDatas[SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count - 1].mapIndex == index)
+        {
+            xPos = SaveManager.SingletonSaveData.checkPointData.checkpointDatas[SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count - 1].xPosionTion;
+            yPos = SaveManager.SingletonSaveData.checkPointData.checkpointDatas[SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count - 1].yPosionTion;
+            zPos = SaveManager.SingletonSaveData.checkPointData.checkpointDatas[SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count - 1].zPosionTion;
+            gameObject.transform.position = new Vector3(xPos, yPos, zPos);
+        }
 
-
-
+        // setCameraRoot(true);
+    }
 }
