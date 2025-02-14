@@ -2098,7 +2098,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7010288419151453231, guid: f5562746bdaec3843ba1bc225388a02e, type: 3}
       propertyPath: FootstepAudioVolume
-      value: 0.27
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 7042902049426718022, guid: f5562746bdaec3843ba1bc225388a02e, type: 3}
       propertyPath: m_LocalPosition.x

@@ -28,7 +28,7 @@ public class PlayerCollision : MonoBehaviour
             string correctName = name.Substring(0, name.Length - 6);
             takeItem.AddInventory(correctName);
             SaveManager.SingletonSaveData.UpdateInventoryData(other.gameObject.transform.GetInstanceID(), correctName, 1);
-
+            SoundSingleton._instance.GetItem();
             Destroy(other.gameObject);
         }
 

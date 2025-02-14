@@ -40,8 +40,6 @@ public class CharacterInput : MonoBehaviour
 
     }
 
-
-
     public void OnSwitchItem()
     {
         if (Input.anyKey)
@@ -53,6 +51,7 @@ public class CharacterInput : MonoBehaviour
                 {
                     int exactNumber = i - (int)KeyCode.Alpha0;
                     SwitchItemInput(exactNumber);
+                    SoundSingleton._instance.EquipItem();
                 }
                 if (Input.GetKeyUp(key))
                 {

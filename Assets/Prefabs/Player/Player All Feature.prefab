@@ -52,31 +52,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6030149303488926358, guid: 58385799b8ce7f046b29e87e26a4a257, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -77.17919
+      value: -80.03706
       objectReference: {fileID: 0}
     - target: {fileID: 6030149303488926358, guid: 58385799b8ce7f046b29e87e26a4a257, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 91.153366
+      value: 3.8455987
       objectReference: {fileID: 0}
     - target: {fileID: 6030149303488926358, guid: 58385799b8ce7f046b29e87e26a4a257, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -93.97332
+      value: -97.70976
       objectReference: {fileID: 0}
     - target: {fileID: 6030149303488926358, guid: 58385799b8ce7f046b29e87e26a4a257, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7418066
+      value: 0.98957926
       objectReference: {fileID: 0}
     - target: {fileID: 6030149303488926358, guid: 58385799b8ce7f046b29e87e26a4a257, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.107936956
+      value: 0.14398924
       objectReference: {fileID: 0}
     - target: {fileID: 6030149303488926358, guid: 58385799b8ce7f046b29e87e26a4a257, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.6549733
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6030149303488926358, guid: 58385799b8ce7f046b29e87e26a4a257, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.095302224
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6030149303488926358, guid: 58385799b8ce7f046b29e87e26a4a257, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -266,6 +266,10 @@ PrefabInstance:
       propertyPath: LandingAudio
       value: 
       objectReference: {fileID: 8300000, guid: caa28d8231b0fef419b7f5983bdec411, type: 3}
+    - target: {fileID: 1734602429885088648, guid: 1069cf6c50d92de4da3e8ff504f46cda, type: 3}
+      propertyPath: FootstepAudioVolume
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 1734602429885088648, guid: 1069cf6c50d92de4da3e8ff504f46cda, type: 3}
       propertyPath: FootStepAudio.Array.size
       value: 10
