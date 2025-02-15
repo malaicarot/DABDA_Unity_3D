@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonHadler : MonoBehaviour
 {
@@ -12,19 +13,24 @@ public class ButtonHadler : MonoBehaviour
     {
         playerBeforeStart = FindFirstObjectByType<PlayerBeforeStart>();
 
-        if (!(SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count > 0))
-        {
-            startUI.SetActive(true);
-        }
-        else
-        {
-            startUI.SetActive(false);
-        }
+        // if (!(SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count > 0))
+        // {
+        //     startUI.SetActive(true);
+        // }
+        // else
+        // {
+        //     startUI.SetActive(false);
+        // }
     }
 
 
     public void StartGame()
     {
+        if (SaveManager.SingletonSaveData.saveData.inventoryDatas.Count > 0)
+        {
+            SaveManager.SingletonSaveData.DeleteFileSave();
+        }
+
         playerBeforeStart.EnableFeature(true);
         playerBeforeStart.CursorHandle(true);
         playerBeforeStart.setCameraRoot(true);
@@ -36,6 +42,17 @@ public class ButtonHadler : MonoBehaviour
     {
         Debug.Log("Settings");
 
+    }
+
+    public void LoadCheckPoint()
+    {
+        if (SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count > 0)
+        {
+            int index = SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count - 1;
+            int map = SaveManager.SingletonSaveData.checkPointData.checkpointDatas[index].mapIndex;
+            SceneManager.LoadScene(map);
+            playerBeforeStart.StartGame();
+        }
     }
 
     public void ExitGame()

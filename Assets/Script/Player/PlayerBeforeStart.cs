@@ -19,16 +19,12 @@ public class PlayerBeforeStart : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         _input = GetComponent<CharacterInput>();
-
-        if (!(SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count > 0))
+        
+        if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             EnableFeature(false);
             CursorHandle(false);
             setCameraRoot(false);
-        }
-        else
-        {
-            StartGame();
         }
     }
 
@@ -68,7 +64,5 @@ public class PlayerBeforeStart : MonoBehaviour
             zPos = SaveManager.SingletonSaveData.checkPointData.checkpointDatas[SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count - 1].zPosionTion;
             gameObject.transform.position = new Vector3(xPos, yPos, zPos);
         }
-
-        // setCameraRoot(true);
     }
 }

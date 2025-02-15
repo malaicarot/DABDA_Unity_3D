@@ -16,11 +16,11 @@ public class TriggerActive : MonoBehaviour
         {
             if (gameObject.CompareTag("LastScene"))
             {
-                loadScene.LoadLastScene();
+                StartCoroutine(loadScene.WaitForLoad(3));
             }
             else
             {
-                loadScene.LoadNextScene();
+                StartCoroutine(loadScene.WaitForLoad(1));
             }
         }
     }
