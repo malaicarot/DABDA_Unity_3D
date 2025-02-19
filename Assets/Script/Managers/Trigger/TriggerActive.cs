@@ -22,6 +22,11 @@ public class TriggerActive : MonoBehaviour
             {
                 StartCoroutine(loadScene.WaitForLoad(1));
             }
+
+            if (gameObject.CompareTag("Respawn"))
+            {
+                StartCoroutine(loadScene.WaitForLoad(0));
+            }
         }
     }
 }

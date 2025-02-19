@@ -318,6 +318,23 @@ public class LightGemAbility : ItemAbility
     }
 }
 
+public class MirrorGhostAbility : ItemAbility
+{
+    public override string itemName => "MirrorGhost"; // Ghi đè PT itemName
+    public override string description => "";
+
+    public override bool isSupport => false;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        GameObject ghost = GameObject.Find("Ghosts");
+        GhostChase ghostChase = ghost.GetComponent<GhostChase>();
+        ghostChase.ActiveGhost(true);
+
+    }
+}
+
+
+
 public class AbilityItems
 {
     public void VocalnoErupts()

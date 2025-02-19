@@ -439,6 +439,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TriggerLoadScene
       objectReference: {fileID: 0}
+    - target: {fileID: 108784937954514349, guid: 734b7fed4fefe564f8355430d1c4b338, type: 3}
+      propertyPath: m_TagString
+      value: Respawn
+      objectReference: {fileID: 0}
     - target: {fileID: 4369565079921735804, guid: 734b7fed4fefe564f8355430d1c4b338, type: 3}
       propertyPath: m_LocalPosition.x
       value: 501
