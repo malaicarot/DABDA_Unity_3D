@@ -16,6 +16,8 @@ public abstract class ItemAbility
 }
 
 /*Tạo lớp "con" kế thừa "ItemAbility"*/
+
+/*Map 1*/
 public class ChrysanthemumAbility : ItemAbility
 {
     public override string itemName => "Chrysanthemum"; // Ghi đè PT itemName
@@ -125,6 +127,7 @@ public class WaterGemAbility : ItemAbility
     }
 }
 
+/*Map 2*/
 public class LavaGemAbility : ItemAbility
 {
     public override string itemName => "LavaGem"; // Ghi đè PT itemName
@@ -242,6 +245,7 @@ public class TorchAbility : ItemAbility
     }
 }
 
+/*Map 3*/
 public class AngleStatueAbility : ItemAbility
 {
     public override string itemName => "AngelStatue"; // Ghi đè PT itemName
@@ -318,6 +322,7 @@ public class LightGemAbility : ItemAbility
     }
 }
 
+/*Map 4*/
 public class MirrorGhostAbility : ItemAbility
 {
     public override string itemName => "MirrorGhost"; // Ghi đè PT itemName
@@ -333,8 +338,75 @@ public class MirrorGhostAbility : ItemAbility
     }
 }
 
+public class StonePedestalAbility : ItemAbility
+{
+    public override string itemName => "StonePedestal"; // Ghi đè PT itemName
+    public override string description => "";
+
+    public override bool isSupport => false;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        AbilityItems abilityItems = new AbilityItems();
+        abilityItems.CheckPoint();
+        GameObject pedestal = GameObject.Find(itemName);
+        Transform lightGemGlow = pedestal.transform.Find("LightGemGlow");
+        Transform pointLight = pedestal.transform.Find("PointLight");
+        GameObject timeline = GameObject.Find("GemTimeLine");
+        TimelineController timelineController = timeline.GetComponent<TimelineController>();
+        GameObject lightGem = GameObject.Find("LightGem");
+        GameObject mirrorGhost = GameObject.Find("MirrorGhost");
+        GameObject ghosts = GameObject.Find("Ghosts");
+        
+        if (lightGem != null)
+        {
+            pointLight.gameObject.SetActive(true);
+            lightGemGlow.gameObject.SetActive(true);
+            timelineController.PlayTimeline();
+            mirrorGhost.gameObject.SetActive(false);
+            ghosts.gameObject.SetActive(false);
+        }
+    }
+}
+public class WoodGemAbility : ItemAbility
+{
+    public override string itemName => "WoodGem"; // Ghi đè PT itemName
+    public override string description => "";
+
+    public override bool isSupport => true;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        Debug.Log("WoodGem!");
+    }
+}
 
 
+public class LakeAbility : ItemAbility
+{
+    public override string itemName => "Lake"; // Ghi đè PT itemName
+    public override string description => "";
+
+    public override bool isSupport => false;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        GameObject lake = GameObject.Find(itemName);
+        MeshRenderer meshRenderer = lake.GetComponentInChildren<MeshRenderer>();
+        GameObject woodGem = GameObject.Find("WoodGem");
+        GameObject flower = GameObject.Find("Chrysanthemum");
+        GameObject trees = GameObject.Find("TreesRoad");
+        GameObject rain = GameObject.Find("Rain");
+        RainActive rainActive = rain.GetComponent<RainActive>();
+        SpawnTreesRoad spawnTreesRoad = trees.GetComponent<SpawnTreesRoad>();
+    
+        if (woodGem != null && flower != null)
+        {
+            meshRenderer.enabled = true;
+            spawnTreesRoad.SpawnTrees();
+            rainActive.Active();
+        }
+    }
+}
+
+/*****************************************/
 public class AbilityItems
 {
     public void VocalnoErupts()

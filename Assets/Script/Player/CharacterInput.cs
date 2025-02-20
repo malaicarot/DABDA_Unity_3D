@@ -44,7 +44,7 @@ public class CharacterInput : MonoBehaviour
     {
         if (Input.anyKey)
         {
-            for (int i = (int)KeyCode.Alpha1; i <= (int)KeyCode.Alpha9; i++)
+            for (int i = (int)KeyCode.Alpha0; i <= (int)KeyCode.Alpha9; i++)
             {
                 KeyCode key = (KeyCode)i;
                 if (Input.GetKeyDown(key))
@@ -55,7 +55,7 @@ public class CharacterInput : MonoBehaviour
                 }
                 if (Input.GetKeyUp(key))
                 {
-                    SwitchItemInput(0);
+                    SwitchItemInput(-1);
                 }
             }
         }

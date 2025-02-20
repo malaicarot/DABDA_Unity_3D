@@ -156,6 +156,10 @@ public class PlayerInventory : PooledObject
         {
             item.ItemRelease();
         }
+        Debug.Log(name);
+        Debug.Log(item);
+        Debug.Log(itemPosition);
+        
         item = ItemsPool.SingleTonItemsPool.GetItem(name, itemPosition.position, itemPosition.rotation);
         BoxCollider boxCollider = item.GetComponent<BoxCollider>();
         boxCollider.enabled = false;
@@ -171,7 +175,7 @@ public class PlayerInventory : PooledObject
             isEquip = true;
             CheckAndEquipItems(value, inventoryManagers.itemNameList, currentItem);
         }
-        else if (value > 5 && value < 10)
+        else if (value > 5 && value < 10 || value == 0)
         {
             isEquipSupport = true;
             CheckAndEquipItems(value, inventoryManagers.itemSupportNameList, currentSupportItem);
@@ -183,6 +187,7 @@ public class PlayerInventory : PooledObject
         int index = 0;
         bool isSupport = false;
 
+
         if (value > 0 && value < 6)
         {
             index = value - 1;
@@ -191,9 +196,16 @@ public class PlayerInventory : PooledObject
         }
         else if (value > 5 && value < 10)
         {
+
             index = value - 1 - 5;
             isSupport = true;
         }
+        else if (value == 0)
+        {
+            index = 4;
+            isSupport = true;
+        }
+
 
         if (index >= 0 && index < itemListBase.Count)
         {
