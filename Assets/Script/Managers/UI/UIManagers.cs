@@ -4,24 +4,33 @@ using UnityEngine;
 
 public class UIManagers : MonoBehaviour
 {
+
     [SerializeField] GameObject newGameButton;
     [SerializeField] GameObject coutinueButton;
     [SerializeField] GameObject settingsButton;
     [SerializeField] GameObject exitButton;
+    /*******************************************/
+    [SerializeField] List<GameObject> inventoryUI;
 
     void Start()
     {
+
+        ActiveInventory(false);
         if (!(SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count > 0))
         {
             coutinueButton.SetActive(false);
-        }else{
+        }
+        else
+        {
             coutinueButton.SetActive(true);
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ActiveInventory(bool active)
     {
-
+        foreach (GameObject item in inventoryUI)
+        {
+            item.SetActive(active);
+        }
     }
 }

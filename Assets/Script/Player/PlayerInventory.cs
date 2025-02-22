@@ -29,7 +29,11 @@ public class PlayerInventory : PooledObject
         _input = GetComponent<CharacterInput>();
         inventoryManagers = FindFirstObjectByType<InventoryManagers>();
         animator = GetComponent<Animator>();
+        LoadGameData();
+    }
 
+    public void LoadGameData()
+    {
         if (SaveManager.SingletonSaveData.saveData != null && inventoryManagers.itemSupportNameList != null && inventoryManagers.itemNameList != null)
         {
             foreach (var item in SaveManager.SingletonSaveData.saveData.inventoryDatas)
@@ -37,9 +41,8 @@ public class PlayerInventory : PooledObject
                 AddInventory(item.itemName);
             }
         }
-
-
     }
+
     void Update()
     {
         if (currentItem != null)
@@ -156,10 +159,7 @@ public class PlayerInventory : PooledObject
         {
             item.ItemRelease();
         }
-        Debug.Log(name);
-        Debug.Log(item);
-        Debug.Log(itemPosition);
-        
+
         item = ItemsPool.SingleTonItemsPool.GetItem(name, itemPosition.position, itemPosition.rotation);
         BoxCollider boxCollider = item.GetComponent<BoxCollider>();
         boxCollider.enabled = false;

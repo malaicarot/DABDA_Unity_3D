@@ -304,6 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startUI: {fileID: 6756856060500933307}
+  playerInventory: {fileID: 7512251294254613769}
 --- !u!114 &587923976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,6 +532,9 @@ MonoBehaviour:
   coutinueButton: {fileID: 587923973}
   settingsButton: {fileID: 6756856060500933310}
   exitButton: {fileID: 6756856060500933309}
+  inventoryUI:
+  - {fileID: 1929408566}
+  - {fileID: 1929408565}
 --- !u!1 &935331894
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,6 +1207,16 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1529014846320577451, guid: f5562746bdaec3843ba1bc225388a02e, type: 3}
   m_PrefabInstance: {fileID: 7512251294254613768}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1929408565 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4606425963609755160, guid: 1396a130bd54579499bba8c785eaa557, type: 3}
+  m_PrefabInstance: {fileID: 6756856060500933306}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1929408566 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2816544649600977639, guid: 1396a130bd54579499bba8c785eaa557, type: 3}
+  m_PrefabInstance: {fileID: 6756856060500933306}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &461101749070937322 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7171081571981205862, guid: 1396a130bd54579499bba8c785eaa557, type: 3}
@@ -1538,6 +1552,10 @@ PrefabInstance:
       propertyPath: startUI
       value: 
       objectReference: {fileID: 6756856060500933307}
+    - target: {fileID: 108388304806711873, guid: 1396a130bd54579499bba8c785eaa557, type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 7512251294254613769}
     - target: {fileID: 1028734377201846418, guid: 1396a130bd54579499bba8c785eaa557, type: 3}
       propertyPath: m_text
       value: 'New Game
@@ -1552,6 +1570,10 @@ PrefabInstance:
       propertyPath: startUI
       value: 
       objectReference: {fileID: 6756856060500933307}
+    - target: {fileID: 2245590273018012364, guid: 1396a130bd54579499bba8c785eaa557, type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 7512251294254613769}
     - target: {fileID: 2540106125656570368, guid: 1396a130bd54579499bba8c785eaa557, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -1584,6 +1606,10 @@ PrefabInstance:
       propertyPath: startUI
       value: 
       objectReference: {fileID: 6756856060500933307}
+    - target: {fileID: 3956776901684649755, guid: 1396a130bd54579499bba8c785eaa557, type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 7512251294254613769}
     - target: {fileID: 5566828424613823511, guid: 1396a130bd54579499bba8c785eaa557, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2770,6 +2796,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 567797243}
   m_SourcePrefab: {fileID: 100100000, guid: f5562746bdaec3843ba1bc225388a02e, type: 3}
+--- !u!114 &7512251294254613769 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2610055092276654785, guid: f5562746bdaec3843ba1bc225388a02e, type: 3}
+  m_PrefabInstance: {fileID: 7512251294254613768}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 567797220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ca427785e58c5840b9396e71f9c0ed8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!223 &7844122450981153836 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 948920858707286113, guid: 1396a130bd54579499bba8c785eaa557, type: 3}

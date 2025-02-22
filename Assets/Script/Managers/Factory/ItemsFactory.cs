@@ -6,7 +6,7 @@ using System.Linq;
 using UnityEngine.SceneManagement;
 
 
-/*Tạo lớp trừu tượng chung cho các chức năng của itemitem*/
+/*Tạo lớp trừu tượng chung cho các chức năng của item*/
 public abstract class ItemAbility
 {
     public abstract string itemName { get; }
@@ -15,7 +15,7 @@ public abstract class ItemAbility
     public abstract bool isSupport { get; }
 }
 
-/*Tạo lớp "con" kế thừa "ItemAbility"*/
+
 
 /*Map 1*/
 public class ChrysanthemumAbility : ItemAbility
