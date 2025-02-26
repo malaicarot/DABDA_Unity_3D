@@ -422,9 +422,14 @@ public class WaterAbility : ItemAbility
         Transform waterParent = water.gameObject.transform;
         Transform waterChild = waterParent.Find("WaterPrefab");
         GameObject waterGem = GameObject.Find("WaterGem");
+        GameObject timeline = GameObject.Find("GemTimeLine_3");
+        TimelineController timelineController = timeline.GetComponent<TimelineController>();
         if (waterGem != null)
         {
+            timelineController.PlayTimeline();
             waterChild.gameObject.SetActive(true);
+            abilityItems.RemoveData("WaterGem");
+            waterGem.SetActive(false);
         }
     }
 }
@@ -442,10 +447,17 @@ public class GrowthUpAbility : ItemAbility
         GameObject woodGem = GameObject.Find("WoodGem");
         Transform parent = growthUp.transform;
         Transform child = parent.Find("Vegetation");
+        Transform gemMove = parent.Find("Wood");
         GameObject water = GameObject.Find("WaterPrefab");
+        GameObject timeline = GameObject.Find("GemTimeLine_2");
+        TimelineController timelineController = timeline.GetComponent<TimelineController>();
         if (woodGem != null && water != null)
         {
+            gemMove.gameObject.SetActive(true);
+            timelineController.PlayTimeline();
             child.gameObject.SetActive(true);
+            abilityItems.RemoveData("WoodGem");
+            woodGem.SetActive(false);
         }
     }
 }
@@ -460,10 +472,18 @@ public class FirePedestalAbility : ItemAbility
         AbilityItems abilityItems = new AbilityItems();
         abilityItems.CheckPoint();
         GameObject lavaGem = GameObject.Find("LavaGem");
+        GameObject firePedestal = GameObject.Find("FirePedestal");
+        Transform gemMove = firePedestal.transform.Find("LavaGemObject");
         GameObject torch = GameObject.Find("TorchesFires");
+        GameObject timeline = GameObject.Find("GemTimeLine_1");
+        TimelineController timelineController = timeline.GetComponent<TimelineController>();
         twinkle[] fire = torch.GetComponentsInChildren<twinkle>();
         if (lavaGem != null)
         {
+            gemMove.gameObject.SetActive(true);
+            timelineController.PlayTimeline();
+            abilityItems.RemoveData("LavaGem");
+            lavaGem.SetActive(false);
             foreach (twinkle child in fire)
             {
                 child.ActiveFire(true);
@@ -472,6 +492,34 @@ public class FirePedestalAbility : ItemAbility
     }
 }
 
+public class GravelAbility : ItemAbility
+{
+    public override string itemName => "Grave"; // Ghi đè PT itemName
+    public override string description => "";
+
+    public override bool isSupport => false;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        AbilityItems abilityItems = new AbilityItems();
+        abilityItems.CheckPoint();
+        GameObject grave = GameObject.Find(itemName);
+        Transform lightPedestal = grave.transform.Find("Light");
+        Transform lightGemMove = lightPedestal.Find("LightGemPrefabs");
+        GameObject lightGem = GameObject.Find("LightGem");
+        GameObject timeline = GameObject.Find("GemTimeLine_4");
+        GameObject waterGem = GameObject.Find("Sphere");
+        GameObject lavaGem = GameObject.Find("LavaGemObject");
+        GameObject woodGem = GameObject.Find("Wood");
+        TimelineController timelineController = timeline.GetComponent<TimelineController>();
+        if(lightGem != null && waterGem != null && lavaGem != null && woodGem != null){
+            lightGemMove.gameObject.SetActive(true);
+            timelineController.PlayTimeline();
+            abilityItems.RemoveData("LightGem");
+            lightGem.SetActive(false);
+        }
+      
+    }
+}
 
 /*****************************************/
 public class AbilityItems
@@ -493,6 +541,14 @@ public class AbilityItems
     {
         GameObject player = GameObject.Find("Player");
         SaveManager.SingletonSaveData.UpdateCheckpointData(SceneManager.GetActiveScene().buildIndex, player.transform.position.x, player.transform.position.y, player.transform.position.z);
+    }
+
+    public void RemoveData(string name)
+    {
+        GameObject player = GameObject.Find("Player");
+        PlayerInventory playerInventory = player.GetComponent<PlayerInventory>();
+        playerInventory.RemoveData(name);
+
     }
 }
 

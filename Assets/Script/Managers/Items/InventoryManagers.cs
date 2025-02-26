@@ -103,11 +103,8 @@ public class InventoryManagers : MonoBehaviour
         else
         {
             MarkItem(imageItemsEmptyList, name);
-
         }
-
     }
-
     void MarkItem(List<Image> target, string name)
     {
         foreach (Image item in target)
@@ -154,6 +151,26 @@ public class InventoryManagers : MonoBehaviour
                 item.sprite = itemSprite.Find(item => item.name == itemName[itemName.Count - 1]);
                 item.enabled = true;
                 break;
+            }
+        }
+    }
+    public void RemoveItemUI(string itemName)
+    {
+        foreach (Image item in imageSupportItemsEmptyList)
+        {
+            if (item.sprite != null)
+            {
+               if (item.sprite.name == itemName)
+                {
+                    item.sprite = null;
+                    item.enabled = false;
+                    for(int i = 0; i < itemSupportNameList.Count; i++){
+                        if(itemSupportNameList[i] == itemName){
+                            itemSupportNameList.RemoveAt(i);
+                        }
+                    }
+                    break;
+                }
             }
         }
     }

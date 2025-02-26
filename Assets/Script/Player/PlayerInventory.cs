@@ -42,6 +42,11 @@ public class PlayerInventory : PooledObject
             }
         }
     }
+    public void RemoveData(string name){
+        // SaveManager.SingletonSaveData.RemoveItemFromInventory(name);
+        inventoryManagers.RemoveItemUI(name);
+        // LoadGameData();
+    }
 
     void Update()
     {
@@ -67,7 +72,6 @@ public class PlayerInventory : PooledObject
             currentSupportItemAbility.Proccess();
         }
         SwitchItem(_input.switchItem);
-
     }
 
     void EquipItem(string name, bool type)

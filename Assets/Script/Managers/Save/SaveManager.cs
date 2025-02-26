@@ -98,12 +98,26 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    public void DeleteFileSave(){
-        // CombinedData combinedData = new CombinedData(saveData, checkPointData);
+    public void DeleteFileSave()
+    {
         saveData.inventoryDatas.Clear();
         SaveCombinedData();
     }
 
+    public void RemoveItemFromInventory(string name)
+    {
+        if (saveData == null || saveData.inventoryDatas == null) return;
+
+        for (int i = 0; i < saveData.inventoryDatas.Count; i++)
+        {
+            if (saveData.inventoryDatas[i].itemName == name)
+            {
+                saveData.inventoryDatas.RemoveAt(i);
+                SaveCombinedData();
+                return;
+            }
+        }
+    }
 
     public void LoadCombinedData()
     {
@@ -132,18 +146,18 @@ public class SaveManager : MonoBehaviour
             }
         }
         else
+        {
+            saveData = new SaveData
             {
-                saveData = new SaveData
-                {
-                    inventoryDatas = new List<InventoryData>()
-                };
-                checkPointData = new CheckPoint
-                {
-                    checkpointDatas = new List<MapData>()
-                };
-                SaveCombinedData();
-            }
+                inventoryDatas = new List<InventoryData>()
+            };
+            checkPointData = new CheckPoint
+            {
+                checkpointDatas = new List<MapData>()
+            };
+            SaveCombinedData();
         }
+    }
 
     public void UpdateInventoryData(float id, string name, int quantity)
     {
