@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Cinemachine;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -28,13 +29,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float BotClamp = -30f;
     [SerializeField] float CameraAngleOverride = 0.0f;
 
+    [SerializeField] GameObject PlayerFollowCamera;
+    [SerializeField] float FOVEnd;
+    [SerializeField] float FOVDuration;
+    CinemachineVirtualCamera cinemachineVirtualCamera;
+
     [SerializeField] float deltaTime = 5;
 
     [SerializeField] AudioClip LandingAudio;
     [SerializeField] AudioClip[] FootStepAudio;
     [Range(0, 1)][SerializeField] float FootstepAudioVolume = 0.5f;
 
-
+    LoadScene loadScene;
 
 
     bool isGrounded = true;
@@ -82,10 +88,12 @@ public class PlayerMovement : MonoBehaviour
     }
     void Start()
     {
+        cinemachineVirtualCamera = PlayerFollowCamera.GetComponent<CinemachineVirtualCamera>();
         _cinemachineTargetYaw = CinemachineTarget.transform.rotation.eulerAngles.y;
         _hasAnimator = TryGetComponent(out _animator);
         _controller = GetComponent<CharacterController>();
         _input = GetComponent<CharacterInput>();
+        loadScene = FindFirstObjectByType<LoadScene>();
         _jumpTimeoutDelta = jumpTimeOut;
         _fallTimeoutDelta = fallTimeOut;
 
@@ -313,7 +321,26 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         _animator.SetBool("Crushing", false);
         _animator.SetBool("SpecialAction", false);
+    }
 
+    public void Spray()
+    {
+        _animator.SetBool("Spray", true);
+        _input.enableMovement = false;
+        StartCoroutine(MoveFOV(cinemachineVirtualCamera.m_Lens.FieldOfView, FOVEnd, FOVDuration));
+    }
+
+    IEnumerator MoveFOV(float fromFOV, float toFOV, float duration)
+    {
+        float escape = 0;
+        while (escape < duration)
+        {
+            cinemachineVirtualCamera.m_Lens.FieldOfView = Mathf.Lerp(fromFOV, toFOV, escape / duration);
+            escape += Time.deltaTime;
+            yield return null;
+        }
+        cinemachineVirtualCamera.m_Lens.FieldOfView = toFOV;
+        loadScene.LoadEndScene();
     }
 
     public void ApplyForce(float force)

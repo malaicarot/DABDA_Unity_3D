@@ -505,6 +505,8 @@ public class GravelAbility : ItemAbility
         GameObject grave = GameObject.Find(itemName);
         Transform lightPedestal = grave.transform.Find("Light");
         Transform lightGemMove = lightPedestal.Find("LightGemPrefabs");
+        Transform particle = grave.transform.Find("Soul");
+        SoulEffect soulEffect = particle.GetComponent<SoulEffect>();
         GameObject lightGem = GameObject.Find("LightGem");
         GameObject timeline = GameObject.Find("GemTimeLine_4");
         GameObject waterGem = GameObject.Find("Sphere");
@@ -516,6 +518,7 @@ public class GravelAbility : ItemAbility
             timelineController.PlayTimeline();
             abilityItems.RemoveData("LightGem");
             lightGem.SetActive(false);
+            soulEffect.PlayParticle();
         }
       
     }

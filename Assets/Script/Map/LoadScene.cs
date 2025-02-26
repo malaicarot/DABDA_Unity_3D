@@ -4,12 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
-
-    PlayerInventory playerInventory;
     void Start()
     {
         SaveManager.SingletonSaveData.LoadCombinedData();
-        playerInventory = FindFirstObjectByType<PlayerInventory>();
     }
     public void LoadSaveScene()
     {
@@ -34,6 +31,13 @@ public class LoadScene : MonoBehaviour
         int index = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(index + nextIndex);
     }
+
+    public void LoadEndScene()
+    {
+        int lastSceneIndex = SceneManager.sceneCountInBuildSettings - 1;
+        SceneManager.LoadScene(lastSceneIndex);
+    }
+   
 
     public IEnumerator WaitForLoad(int nextIndex)
     {

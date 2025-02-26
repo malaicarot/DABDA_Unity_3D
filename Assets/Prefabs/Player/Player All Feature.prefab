@@ -192,6 +192,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4354361643033116824}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2615956280719209499 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1738515593191699587, guid: 2dd49f78cf6e3034fa2e54387b333e52,
+    type: 3}
+  m_PrefabInstance: {fileID: 4354361643033116824}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8744591437722165159
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -312,6 +318,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1734602429885088648, guid: 1069cf6c50d92de4da3e8ff504f46cda,
         type: 3}
+      propertyPath: FOVEnd
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734602429885088648, guid: 1069cf6c50d92de4da3e8ff504f46cda,
+        type: 3}
+      propertyPath: FOVDuration
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1734602429885088648, guid: 1069cf6c50d92de4da3e8ff504f46cda,
+        type: 3}
       propertyPath: LandingAudio
       value: 
       objectReference: {fileID: 8300000, guid: caa28d8231b0fef419b7f5983bdec411, type: 3}
@@ -320,6 +336,11 @@ PrefabInstance:
       propertyPath: groundMask.m_Bits
       value: 4096
       objectReference: {fileID: 0}
+    - target: {fileID: 1734602429885088648, guid: 1069cf6c50d92de4da3e8ff504f46cda,
+        type: 3}
+      propertyPath: PlayerFollowCamera
+      value: 
+      objectReference: {fileID: 2615956280719209499}
     - target: {fileID: 1734602429885088648, guid: 1069cf6c50d92de4da3e8ff504f46cda,
         type: 3}
       propertyPath: FootstepAudioVolume
