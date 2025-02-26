@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TriggerActive : MonoBehaviour
@@ -16,11 +14,16 @@ public class TriggerActive : MonoBehaviour
         {
             if (gameObject.CompareTag("LastScene"))
             {
-                loadScene.LoadLastScene();
+                StartCoroutine(loadScene.WaitForLoad(3));
             }
             else
             {
-                loadScene.LoadNextScene();
+                StartCoroutine(loadScene.WaitForLoad(1));
+            }
+
+            if (gameObject.CompareTag("Respawn"))
+            {
+                StartCoroutine(loadScene.WaitForLoad(0));
             }
         }
     }

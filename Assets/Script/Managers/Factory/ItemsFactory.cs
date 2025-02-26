@@ -6,7 +6,7 @@ using System.Linq;
 using UnityEngine.SceneManagement;
 
 
-/*Tạo lớp trừu tượng chung cho các chức năng của itemitem*/
+/*Tạo lớp trừu tượng chung cho các chức năng của item*/
 public abstract class ItemAbility
 {
     public abstract string itemName { get; }
@@ -15,7 +15,9 @@ public abstract class ItemAbility
     public abstract bool isSupport { get; }
 }
 
-/*Tạo lớp "con" kế thừa "ItemAbility"*/
+
+
+/*Map 1*/
 public class ChrysanthemumAbility : ItemAbility
 {
     public override string itemName => "Chrysanthemum"; // Ghi đè PT itemName
@@ -125,6 +127,7 @@ public class WaterGemAbility : ItemAbility
     }
 }
 
+/*Map 2*/
 public class LavaGemAbility : ItemAbility
 {
     public override string itemName => "LavaGem"; // Ghi đè PT itemName
@@ -242,6 +245,7 @@ public class TorchAbility : ItemAbility
     }
 }
 
+/*Map 3*/
 public class AngleStatueAbility : ItemAbility
 {
     public override string itemName => "AngelStatue"; // Ghi đè PT itemName
@@ -318,6 +322,158 @@ public class LightGemAbility : ItemAbility
     }
 }
 
+/*Map 4*/
+public class MirrorGhostAbility : ItemAbility
+{
+    public override string itemName => "MirrorGhost"; // Ghi đè PT itemName
+    public override string description => "";
+
+    public override bool isSupport => false;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        GameObject ghost = GameObject.Find("Ghosts");
+        GhostChase ghostChase = ghost.GetComponent<GhostChase>();
+        ghostChase.ActiveGhost(true);
+
+    }
+}
+
+public class StonePedestalAbility : ItemAbility
+{
+    public override string itemName => "StonePedestal"; // Ghi đè PT itemName
+    public override string description => "";
+
+    public override bool isSupport => false;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        AbilityItems abilityItems = new AbilityItems();
+        abilityItems.CheckPoint();
+        GameObject pedestal = GameObject.Find(itemName);
+        Transform lightGemGlow = pedestal.transform.Find("LightGemGlow");
+        Transform pointLight = pedestal.transform.Find("PointLight");
+        GameObject timeline = GameObject.Find("GemTimeLine");
+        TimelineController timelineController = timeline.GetComponent<TimelineController>();
+        GameObject lightGem = GameObject.Find("LightGem");
+        GameObject mirrorGhost = GameObject.Find("MirrorGhost");
+        GameObject ghosts = GameObject.Find("Ghosts");
+
+        if (lightGem != null)
+        {
+            pointLight.gameObject.SetActive(true);
+            lightGemGlow.gameObject.SetActive(true);
+            timelineController.PlayTimeline();
+            mirrorGhost.gameObject.SetActive(false);
+            ghosts.gameObject.SetActive(false);
+        }
+    }
+}
+public class WoodGemAbility : ItemAbility
+{
+    public override string itemName => "WoodGem"; // Ghi đè PT itemName
+    public override string description => "";
+
+    public override bool isSupport => true;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        Debug.Log("WoodGem!");
+    }
+}
+
+
+public class LakeAbility : ItemAbility
+{
+    public override string itemName => "Lake"; // Ghi đè PT itemName
+    public override string description => "";
+
+    public override bool isSupport => false;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        GameObject lake = GameObject.Find(itemName);
+        MeshRenderer meshRenderer = lake.GetComponentInChildren<MeshRenderer>();
+        GameObject woodGem = GameObject.Find("WoodGem");
+        GameObject flower = GameObject.Find("Chrysanthemum");
+        GameObject trees = GameObject.Find("TreesRoad");
+        GameObject rain = GameObject.Find("Rain");
+        RainActive rainActive = rain.GetComponent<RainActive>();
+        SpawnTreesRoad spawnTreesRoad = trees.GetComponent<SpawnTreesRoad>();
+
+        if (woodGem != null && flower != null)
+        {
+            meshRenderer.enabled = true;
+            spawnTreesRoad.SpawnTrees();
+            rainActive.Active();
+        }
+    }
+}
+
+
+/*Map 5*/
+public class WaterAbility : ItemAbility
+{
+    public override string itemName => "Water"; // Ghi đè PT itemName
+    public override string description => "";
+
+    public override bool isSupport => false;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        AbilityItems abilityItems = new AbilityItems();
+        abilityItems.CheckPoint();
+        GameObject water = GameObject.Find(itemName);
+        Transform waterParent = water.gameObject.transform;
+        Transform waterChild = waterParent.Find("WaterPrefab");
+        GameObject waterGem = GameObject.Find("WaterGem");
+        if (waterGem != null)
+        {
+            waterChild.gameObject.SetActive(true);
+        }
+    }
+}
+public class GrowthUpAbility : ItemAbility
+{
+    public override string itemName => "GrowthUp"; // Ghi đè PT itemName
+    public override string description => "";
+
+    public override bool isSupport => false;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        AbilityItems abilityItems = new AbilityItems();
+        abilityItems.CheckPoint();
+        GameObject growthUp = GameObject.Find("GrowthUp");
+        GameObject woodGem = GameObject.Find("WoodGem");
+        Transform parent = growthUp.transform;
+        Transform child = parent.Find("Vegetation");
+        GameObject water = GameObject.Find("WaterPrefab");
+        if (woodGem != null && water != null)
+        {
+            child.gameObject.SetActive(true);
+        }
+    }
+}
+public class FirePedestalAbility : ItemAbility
+{
+    public override string itemName => "FirePedestal"; // Ghi đè PT itemName
+    public override string description => "";
+
+    public override bool isSupport => false;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        AbilityItems abilityItems = new AbilityItems();
+        abilityItems.CheckPoint();
+        GameObject lavaGem = GameObject.Find("LavaGem");
+        GameObject torch = GameObject.Find("TorchesFires");
+        twinkle[] fire = torch.GetComponentsInChildren<twinkle>();
+        if (lavaGem != null)
+        {
+            foreach (twinkle child in fire)
+            {
+                child.ActiveFire(true);
+            }
+        }
+    }
+}
+
+
+/*****************************************/
 public class AbilityItems
 {
     public void VocalnoErupts()

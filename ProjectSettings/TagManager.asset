@@ -3,34 +3,25 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Cinemachine Target
-  - Item
-  - Mirror
-  - ItemInMap
-  - TriggerLimit
-  - LavaStone
-  - Hammer
-  - Lava
-  - LastScene
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Mirror
+  - 
   - Water
   - UI
+  - 
+  - 
+  - Reflection_Probes
+  - Lighting
+  - Props
+  - ReflectedInWater
   - Ground
-  - Player
-  - Item
+  - AccessibleVolume
+  - PostProcessing
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - MainGround
   - 
   - 
   - 

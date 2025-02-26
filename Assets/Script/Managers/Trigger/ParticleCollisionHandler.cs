@@ -14,7 +14,6 @@ public class ParticleCollisionHandler : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             loadScene.LoadCurrentScene();
-            Debug.Log("Die");
         }
     }
 }

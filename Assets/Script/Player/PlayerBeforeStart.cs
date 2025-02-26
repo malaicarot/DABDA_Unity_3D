@@ -19,16 +19,12 @@ public class PlayerBeforeStart : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         _input = GetComponent<CharacterInput>();
-
-        if (!(SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count > 0))
+        
+        if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             EnableFeature(false);
             CursorHandle(false);
             setCameraRoot(false);
-        }
-        else
-        {
-            StartGame();
         }
     }
 
@@ -56,19 +52,17 @@ public class PlayerBeforeStart : MonoBehaviour
         characterController.enabled = enableFeature;
         animator.SetBool("Falling", !enableFeature);
     }
-    public void StartGame()
-    {
-        EnableFeature(true);
-        CursorHandle(true);
-        int index = SceneManager.GetActiveScene().buildIndex;
-        if (SaveManager.SingletonSaveData.checkPointData.checkpointDatas[SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count - 1].mapIndex == index)
-        {
-            xPos = SaveManager.SingletonSaveData.checkPointData.checkpointDatas[SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count - 1].xPosionTion;
-            yPos = SaveManager.SingletonSaveData.checkPointData.checkpointDatas[SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count - 1].yPosionTion;
-            zPos = SaveManager.SingletonSaveData.checkPointData.checkpointDatas[SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count - 1].zPosionTion;
-            gameObject.transform.position = new Vector3(xPos, yPos, zPos);
-        }
-
-        // setCameraRoot(true);
-    }
+    // public void StartGame()
+    // {
+    //     EnableFeature(true);
+    //     CursorHandle(true);
+    //     int index = SceneManager.GetActiveScene().buildIndex;
+    //     if (SaveManager.SingletonSaveData.checkPointData.checkpointDatas[SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count - 1].mapIndex == index)
+    //     {
+    //         xPos = SaveManager.SingletonSaveData.checkPointData.checkpointDatas[SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count - 1].xPosionTion;
+    //         yPos = SaveManager.SingletonSaveData.checkPointData.checkpointDatas[SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count - 1].yPosionTion;
+    //         zPos = SaveManager.SingletonSaveData.checkPointData.checkpointDatas[SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count - 1].zPosionTion;
+    //         gameObject.transform.position = new Vector3(xPos, yPos, zPos);
+    //     }
+    // }
 }

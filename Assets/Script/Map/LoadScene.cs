@@ -4,31 +4,39 @@ using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
-    void Start() {
+
+    PlayerInventory playerInventory;
+    void Start()
+    {
         SaveManager.SingletonSaveData.LoadCombinedData();
+        playerInventory = FindFirstObjectByType<PlayerInventory>();
     }
-    public void LoadSaveScene(){
+    public void LoadSaveScene()
+    {
         SceneManager.LoadScene(0);
     }
 
-    public void LoadNextScene(){
-        StartCoroutine(WaitForLoad(1));
-    }
-    public void LoadCurrentScene(){
+    public void LoadCurrentScene()
+    {
         StartCoroutine(WaitForLoad(0));
     }
-
-    public void LoadLastScene(){
+    public void LoadFinalScene()
+    {
         StartCoroutine(WaitForLoad(2));
     }
-    void LoadSceneManager(int nextIndex)
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void LoadSceneManager(int nextIndex)
     {
         int index = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(index + nextIndex);        
+        SceneManager.LoadScene(index + nextIndex);
     }
 
-
-    IEnumerator WaitForLoad(int nextIndex){
+    public IEnumerator WaitForLoad(int nextIndex)
+    {
         yield return new WaitForSeconds(2);
         LoadSceneManager(nextIndex);
     }

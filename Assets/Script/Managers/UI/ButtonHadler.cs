@@ -1,41 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonHadler : MonoBehaviour
 {
     [SerializeField] GameObject startUI;
 
     PlayerBeforeStart playerBeforeStart;
+    UIManagers uIManagers;
+    [SerializeField] PlayerInventory playerInventory;
 
     private void Start()
     {
         playerBeforeStart = FindFirstObjectByType<PlayerBeforeStart>();
-
-        if (!(SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count > 0))
-        {
-            startUI.SetActive(true);
-        }
-        else
-        {
-            startUI.SetActive(false);
-        }
+        uIManagers = FindFirstObjectByType<UIManagers>();
     }
 
-
     public void StartGame()
+    {
+        if (SaveManager.SingletonSaveData.saveData.inventoryDatas.Count > 0)
+        {
+            SaveManager.SingletonSaveData.DeleteFileSave();
+        }
+        SetFalseUI();
+    }
+
+    private void SetFalseUI()
     {
         playerBeforeStart.EnableFeature(true);
         playerBeforeStart.CursorHandle(true);
         playerBeforeStart.setCameraRoot(true);
         startUI.SetActive(false);
-
+        uIManagers.ActiveInventory(true);
     }
 
     public void SettingsGame()
     {
         Debug.Log("Settings");
+    }
 
+    public void LoadCheckPoint()
+    {
+        if (SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count > 0)
+        {
+            int index = SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count - 1;
+            if (index != 0)
+            {
+                int map = SaveManager.SingletonSaveData.checkPointData.checkpointDatas[index].mapIndex;
+                SceneManager.LoadScene(map);
+            }
+            // playerBeforeStart.StartGame();
+            SetFalseUI();
+        }
     }
 
     public void ExitGame()

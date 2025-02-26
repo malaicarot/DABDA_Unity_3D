@@ -14,7 +14,7 @@ public class SceneManagers : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            loadScene.LoadNextScene();
+            loadScene.WaitForLoad(1);
         }
 
     }

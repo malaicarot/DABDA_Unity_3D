@@ -98,6 +98,12 @@ public class SaveManager : MonoBehaviour
 
     }
 
+    public void DeleteFileSave(){
+        // CombinedData combinedData = new CombinedData(saveData, checkPointData);
+        saveData.inventoryDatas.Clear();
+        SaveCombinedData();
+    }
+
 
     public void LoadCombinedData()
     {
