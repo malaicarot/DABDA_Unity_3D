@@ -288,7 +288,7 @@ PrefabInstance:
     - target: {fileID: 1982952516850912061, guid: 1c6766b4298ab544f9474cdecfa5c55c,
         type: 3}
       propertyPath: itemSprite.Array.size
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1982952516850912061, guid: 1c6766b4298ab544f9474cdecfa5c55c,
         type: 3}
@@ -1676,6 +1676,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TriggerLoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 108784937954514349, guid: 734b7fed4fefe564f8355430d1c4b338,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4369565079921735804, guid: 734b7fed4fefe564f8355430d1c4b338,
         type: 3}

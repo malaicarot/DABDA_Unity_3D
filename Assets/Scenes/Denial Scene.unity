@@ -2155,6 +2155,17 @@ PrefabInstance:
       propertyPath: inventorySupportUI.Array.data[4]
       value: 
       objectReference: {fileID: 8172825606692603036}
+    - target: {fileID: 3719316120454504132, guid: 1c6766b4298ab544f9474cdecfa5c55c,
+        type: 3}
+      propertyPath: objectToPool.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3719316120454504132, guid: 1c6766b4298ab544f9474cdecfa5c55c,
+        type: 3}
+      propertyPath: objectToPool.Array.data[3]
+      value: 
+      objectReference: {fileID: 7334602964641910964, guid: 705adf067051ded4bac38edaea18568d,
+        type: 3}
     - target: {fileID: 3785079991358260306, guid: 1c6766b4298ab544f9474cdecfa5c55c,
         type: 3}
       propertyPath: m_Name

@@ -10265,6 +10265,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1396a130bd54579499bba8c785eaa557, type: 3}
+--- !u!114 &285542429 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5315256487883563729, guid: 1396a130bd54579499bba8c785eaa557,
+    type: 3}
+  m_PrefabInstance: {fileID: 285542428}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &285627174
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77551,6 +77563,11 @@ PrefabInstance:
       propertyPath: ItemNormalPanel
       value: 
       objectReference: {fileID: 699511896}
+    - target: {fileID: 1982952516850912061, guid: 1c6766b4298ab544f9474cdecfa5c55c,
+        type: 3}
+      propertyPath: textMeshProUGUI
+      value: 
+      objectReference: {fileID: 285542429}
     - target: {fileID: 1982952516850912061, guid: 1c6766b4298ab544f9474cdecfa5c55c,
         type: 3}
       propertyPath: ItemSpecialPanel
