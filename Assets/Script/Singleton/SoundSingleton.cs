@@ -6,6 +6,10 @@ public class SoundSingleton : Singleton<SoundSingleton>
     AudioSource backgroundMusic_1;
     AudioSource backgroundMusic_2;
     AudioSource backgroundMusic_3;
+    AudioSource backgroundMusic_4;
+    AudioSource backgroundMusic_5;
+
+    AudioSource endBackgroundMusic;
 
 
     AudioSource getItem;
@@ -19,8 +23,12 @@ public class SoundSingleton : Singleton<SoundSingleton>
         backgroundMusic_1 = GetComponents<AudioSource>()[0];
         backgroundMusic_2 = GetComponents<AudioSource>()[1];
         backgroundMusic_3 = GetComponents<AudioSource>()[2];
-        getItem = GetComponents<AudioSource>()[3];
-        equipItem = GetComponents<AudioSource>()[4];
+        backgroundMusic_4 = GetComponents<AudioSource>()[3];
+        backgroundMusic_5 = GetComponents<AudioSource>()[4];
+        endBackgroundMusic = GetComponents<AudioSource>()[7];
+
+        getItem = GetComponents<AudioSource>()[5];
+        equipItem = GetComponents<AudioSource>()[6];
     }
 
     void PlayAudio(AudioSource audioSource)
@@ -42,7 +50,11 @@ public class SoundSingleton : Singleton<SoundSingleton>
 
     public void BackgroundMusic()
     {
-        StopAudio(backgroundMusic);
+        if (backgroundMusic != null)
+        {
+            StopAudio(backgroundMusic);
+        }
+
         int map = SceneManager.GetActiveScene().buildIndex;
         switch (map)
         {
@@ -55,9 +67,23 @@ public class SoundSingleton : Singleton<SoundSingleton>
             case 3:
                 backgroundMusic = backgroundMusic_3;
                 break;
+            case 4:
+                backgroundMusic = backgroundMusic_4;
+                break;
+            case 5:
+                backgroundMusic = backgroundMusic_5;
+                break;
+
         }
-        backgroundMusic.volume = 0.1f;
         PlayAudio(backgroundMusic);
+    }
+
+    public void EndMusic(){
+        if (backgroundMusic != null)
+        {
+            StopAudio(backgroundMusic);
+        }
+        PlayAudio(endBackgroundMusic);
     }
 
     public void GetItem()

@@ -327,6 +327,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _animator.SetBool("Spray", true);
         _input.enableMovement = false;
+        SoundSingleton._instance.EndMusic();
         StartCoroutine(MoveFOV(cinemachineVirtualCamera.m_Lens.FieldOfView, FOVEnd, FOVDuration));
     }
 

@@ -520,7 +520,6 @@ public class GravelAbility : ItemAbility
             lightGem.SetActive(false);
             soulEffect.PlayParticle();
         }
-      
     }
 }
 
