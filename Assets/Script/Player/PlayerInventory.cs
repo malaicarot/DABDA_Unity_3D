@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using JetBrains.Annotations;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(PooledObject))]
 public class PlayerInventory : PooledObject
@@ -29,7 +30,9 @@ public class PlayerInventory : PooledObject
         _input = GetComponent<CharacterInput>();
         inventoryManagers = FindFirstObjectByType<InventoryManagers>();
         animator = GetComponent<Animator>();
-        // LoadGameData();
+        if(SceneManager.GetActiveScene().buildIndex > 1){
+            LoadGameData();
+        }
     }
 
     public void LoadGameData()

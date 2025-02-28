@@ -759,7 +759,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightGem_InMap
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 592181762017993536, guid: e2f0f9ab59d0b3043b867602b0a50014, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
