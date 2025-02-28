@@ -101,7 +101,9 @@ public class SaveManager : MonoBehaviour
     public void DeleteFileSave()
     {
         saveData.inventoryDatas.Clear();
+        checkPointData.checkpointDatas.Clear();
         SaveCombinedData();
+        LoadCombinedData();
     }
 
     public void RemoveItemFromInventory(string name)

@@ -29,7 +29,7 @@ public class PlayerInventory : PooledObject
         _input = GetComponent<CharacterInput>();
         inventoryManagers = FindFirstObjectByType<InventoryManagers>();
         animator = GetComponent<Animator>();
-        LoadGameData();
+        // LoadGameData();
     }
 
     public void LoadGameData()
@@ -43,9 +43,7 @@ public class PlayerInventory : PooledObject
         }
     }
     public void RemoveData(string name){
-        // SaveManager.SingletonSaveData.RemoveItemFromInventory(name);
         inventoryManagers.RemoveItemUI(name);
-        // LoadGameData();
     }
 
     void Update()

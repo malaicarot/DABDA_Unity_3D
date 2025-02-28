@@ -6,6 +6,10 @@ public class SoulEffect : MonoBehaviour
 {
     [SerializeField] ParticleSystem circle;
     [SerializeField] ParticleSystem soul;
+    [SerializeField] GameObject inventoryUI_1;
+    [SerializeField] GameObject inventoryUI_2;
+
+
     PlayerMovement playerMovement;
 
     void Start(){
@@ -29,6 +33,8 @@ public class SoulEffect : MonoBehaviour
         yield return new WaitForSeconds(8f);
         soul.Stop();
         circle.Stop();
+        inventoryUI_1.SetActive(false);
+        inventoryUI_2.SetActive(false);
         yield return new WaitForSeconds(1f);
         playerMovement.Spray();
 

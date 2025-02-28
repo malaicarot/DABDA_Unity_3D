@@ -19,11 +19,16 @@ public class ButtonHadler : MonoBehaviour
 
     public void StartGame()
     {
-        if (SaveManager.SingletonSaveData.saveData.inventoryDatas.Count > 0)
-        {
+        // if (SaveManager.SingletonSaveData.saveData.inventoryDatas.Count > 0)
+        // {
             SaveManager.SingletonSaveData.DeleteFileSave();
-        }
+        // }
+        // playerInventory.LoadGameData();
+        // StartCoroutine(WaitForLoadData());
         SetFalseUI();
+    }
+    IEnumerator WaitForLoadData(){
+        yield return new WaitForSeconds(2);
     }
 
     private void SetFalseUI()
@@ -42,6 +47,7 @@ public class ButtonHadler : MonoBehaviour
 
     public void LoadCheckPoint()
     {
+        playerInventory.LoadGameData();
         if (SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count > 0)
         {
             int index = SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count - 1;
@@ -50,7 +56,6 @@ public class ButtonHadler : MonoBehaviour
                 int map = SaveManager.SingletonSaveData.checkPointData.checkpointDatas[index].mapIndex;
                 SceneManager.LoadScene(map);
             }
-            // playerBeforeStart.StartGame();
             SetFalseUI();
         }
     }
