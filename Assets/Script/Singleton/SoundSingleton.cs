@@ -54,6 +54,9 @@ public class SoundSingleton : Singleton<SoundSingleton>
         {
             StopAudio(backgroundMusic);
         }
+        if(endBackgroundMusic != null){
+            StopAudio(endBackgroundMusic);
+        }
 
         int map = SceneManager.GetActiveScene().buildIndex;
         switch (map)
