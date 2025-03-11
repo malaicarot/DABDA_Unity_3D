@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ButtonHadler : MonoBehaviour
 {
     [SerializeField] GameObject startUI;
-
+    [SerializeField] GameObject settingsPannel;
     PlayerBeforeStart playerBeforeStart;
     UIManagers uIManagers;
     [SerializeField] PlayerInventory playerInventory;
@@ -42,7 +42,8 @@ public class ButtonHadler : MonoBehaviour
 
     public void SettingsGame()
     {
-        Debug.Log("Settings");
+        settingsPannel.SetActive(true);
+        
     }
 
     public void LoadCheckPoint()

@@ -26,6 +26,7 @@ public class InventoryManagers : MonoBehaviour
     List<Image> imageSupportItemsEmptyList;
 
     [SerializeField] TextMeshProUGUI textMeshProUGUI;
+    [SerializeField] GameObject settingsPanel;
 
     /**********************************************************/
     // Số hàng và cột 
@@ -77,6 +78,7 @@ public class InventoryManagers : MonoBehaviour
     void Update()
     {
         InventoryHandle();
+        SettingsHandle();
     }
     public void AddItemsInUI(bool type)
     {
@@ -121,8 +123,6 @@ public class InventoryManagers : MonoBehaviour
             }
         }
     }
-
-
     void SpawnSlotInbag(int row, int col, float startY, GameObject parentPrefab, List<Image> slot)
     {
         for (int i = 0; i < row; i++)
@@ -184,6 +184,14 @@ public class InventoryManagers : MonoBehaviour
             inventoryStatus = !inventoryStatus;
             Cursor.visible = inventoryStatus;
             InventoryUI.SetActive(inventoryStatus);
+        }
+    }
+    void SettingsHandle(){
+        if(_input.getSettings){
+            _input.SetCursorState(inventoryStatus);
+            inventoryStatus = !inventoryStatus;
+            Cursor.visible = inventoryStatus;
+            settingsPanel.SetActive(inventoryStatus);
         }
     }
 

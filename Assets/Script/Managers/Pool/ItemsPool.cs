@@ -18,5 +18,4 @@ public class ItemsPool : ObjectPool
         item.transform.rotation = quaternion;
         return item;
     }
-
 }

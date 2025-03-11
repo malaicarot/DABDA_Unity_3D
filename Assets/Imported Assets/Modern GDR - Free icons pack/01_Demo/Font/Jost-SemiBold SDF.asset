@@ -65,7 +65,8 @@ MonoBehaviour:
   materialHashCode: 1639664585
   m_Version: 1.1.0
   m_SourceFontFileGUID: dba2713a5eb25ee45946d0d53c5b9bba
-  m_SourceFontFile_EditorRef: {fileID: 12800000, guid: dba2713a5eb25ee45946d0d53c5b9bba, type: 3}
+  m_SourceFontFile_EditorRef: {fileID: 12800000, guid: dba2713a5eb25ee45946d0d53c5b9bba,
+    type: 3}
   m_SourceFontFile: {fileID: 12800000, guid: dba2713a5eb25ee45946d0d53c5b9bba, type: 3}
   m_AtlasPopulationMode: 1
   m_FaceInfo:
@@ -1642,7 +1643,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Ambient: 0.5
-    - _Bevel: 0.5
+    - _Bevel: 0
     - _BevelClamp: 0.06
     - _BevelOffset: 0
     - _BevelRoundness: 0
@@ -1695,12 +1696,12 @@ Material:
     m_Colors:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _EnvMatrixRotation: {r: 0, g: 0, b: 0, a: 0}
-    - _FaceColor: {r: 0.4339623, g: 0.37557185, b: 0.3004984, a: 1}
+    - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
     - _GlowColor: {r: 1, g: 0.9152949, b: 0.2999999, a: 0.5}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
-    - _UnderlayColor: {r: 0.4339623, g: 0.28931764, b: 0.21534353, a: 0.5}
+    - _UnderlayColor: {r: 0.7584905, g: 0.44172868, b: 0.27906716, a: 0.5}
   m_BuildTextureStacks: []

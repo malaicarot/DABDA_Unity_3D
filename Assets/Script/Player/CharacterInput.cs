@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class CharacterInput : MonoBehaviour
 {
-
     public Vector2 move;
     public Vector2 look;
     public bool jump;
@@ -11,6 +10,7 @@ public class CharacterInput : MonoBehaviour
     public bool interact;
     public int switchItem;
     public bool getInventory;
+    public bool getSettings;
 
 
     public bool cursorLooked = true;
@@ -23,8 +23,6 @@ public class CharacterInput : MonoBehaviour
 
     public float scalePosition = 0.05f;
 
-
-
     void Update()
     {
         if (enableMovement)
@@ -36,6 +34,7 @@ public class CharacterInput : MonoBehaviour
             OnInteract();
             OnSwitchItem();
             OnGetInventory();
+            OnGetSettings();
         }
 
     }
@@ -63,6 +62,11 @@ public class CharacterInput : MonoBehaviour
     public void OnGetInventory()
     {
         getInventory = Input.GetKeyDown(KeyCode.Tab);
+    }
+
+    public void OnGetSettings()
+    {
+        getSettings = Input.GetKeyDown(KeyCode.Escape);
     }
 
     public void OnInteract()
@@ -116,7 +120,6 @@ public class CharacterInput : MonoBehaviour
     {
         move = newMoveDirection;
     }
-
     public void JumpInput(bool newjumpState)
     {
         jump = newjumpState;

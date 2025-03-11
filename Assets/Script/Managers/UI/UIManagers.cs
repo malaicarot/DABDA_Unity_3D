@@ -9,6 +9,8 @@ public class UIManagers : MonoBehaviour
     [SerializeField] GameObject coutinueButton;
     [SerializeField] GameObject settingsButton;
     [SerializeField] GameObject exitButton;
+    [SerializeField] GameObject settingsPannel;
+
     /*******************************************/
     [SerializeField] List<GameObject> inventoryUI;
 
@@ -16,6 +18,7 @@ public class UIManagers : MonoBehaviour
     {
 
         ActiveInventory(false);
+        ActiveSettings(false);
         if (!(SaveManager.SingletonSaveData.checkPointData.checkpointDatas.Count > 0))
         {
             coutinueButton.SetActive(false);
@@ -32,5 +35,10 @@ public class UIManagers : MonoBehaviour
         {
             item.SetActive(active);
         }
+    }
+
+    public void ActiveSettings(bool active)
+    {
+        settingsPannel.SetActive(active);
     }
 }

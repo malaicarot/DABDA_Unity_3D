@@ -10,11 +10,8 @@ public class SoundSingleton : Singleton<SoundSingleton>
     AudioSource backgroundMusic_5;
 
     AudioSource endBackgroundMusic;
-
-
     AudioSource getItem;
     AudioSource equipItem;
-
 
     AudioSource backgroundMusic;
 
@@ -100,4 +97,15 @@ public class SoundSingleton : Singleton<SoundSingleton>
         StopAudio(equipItem);
         PlayAudio(equipItem);
     }
+
+    public void SetVolume(float volume){
+        if(backgroundMusic != null){
+            backgroundMusic.volume = Mathf.Clamp(volume, 0.01f, 1.0f);
+            backgroundMusic.volume = volume;
+            // PlayerPrefs.SetFloat("AudioVolume", volume);
+        }
+
+    }
+
+
 }
