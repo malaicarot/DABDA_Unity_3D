@@ -10215,6 +10215,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 863651001806115411, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 863651001806115411, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 863651001806115411, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1687061762088482090, guid: 1396a130bd54579499bba8c785eaa557,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -10234,6 +10249,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: LoadScene, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2360762290168694499, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2540106125656570368, guid: 1396a130bd54579499bba8c785eaa557,
         type: 3}
@@ -10340,10 +10360,72 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6851486976090915738, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e719f61ab042ac94baf4b2e494f26531,
+        type: 2}
+    - target: {fileID: 6851486976090915738, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851486976090915738, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851486976090915738, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6851486976090915738, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7216236558770370488, guid: 1396a130bd54579499bba8c785eaa557,
         type: 3}
       propertyPath: m_text
       value: Main Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216236558770370488, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e719f61ab042ac94baf4b2e494f26531,
+        type: 2}
+    - target: {fileID: 7216236558770370488, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216236558770370488, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216236558770370488, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216236558770370488, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472811245118364396, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472811245118364396, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

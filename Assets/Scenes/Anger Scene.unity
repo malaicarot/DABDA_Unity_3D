@@ -1533,10 +1533,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6851486976090915738, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e719f61ab042ac94baf4b2e494f26531,
+        type: 2}
+    - target: {fileID: 6851486976090915738, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7216236558770370488, guid: 1396a130bd54579499bba8c785eaa557,
         type: 3}
       propertyPath: m_text
       value: Main Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216236558770370488, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: e719f61ab042ac94baf4b2e494f26531,
+        type: 2}
+    - target: {fileID: 7216236558770370488, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216236558770370488, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216236558770370488, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216236558770370488, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6474244447903513250, guid: e719f61ab042ac94baf4b2e494f26531,
+        type: 2}
+    - target: {fileID: 7216236558770370488, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216236558770370488, guid: 1396a130bd54579499bba8c785eaa557,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7472811245118364396, guid: 1396a130bd54579499bba8c785eaa557,
         type: 3}

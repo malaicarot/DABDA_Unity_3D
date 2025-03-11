@@ -313,7 +313,7 @@ public class SwordKnightAbility : ItemAbility
 public class LightGemAbility : ItemAbility
 {
     public override string itemName => "LightGem"; // Ghi đè PT itemName
-    public override string description => "";
+    public override string description => "Ánh sáng ở nơi bóng tối sâu thẳm nhất!";
 
     public override bool isSupport => true;
     public override void Proccess() // Ghi đè PT Proccess
@@ -370,7 +370,7 @@ public class StonePedestalAbility : ItemAbility
 public class WoodGemAbility : ItemAbility
 {
     public override string itemName => "WoodGem"; // Ghi đè PT itemName
-    public override string description => "";
+    public override string description => "Nổi đau như gốc rễ cắm sâu vào tâm hồn. Nhưng rễ càng sâu, cây lại càng vững vàng!";
 
     public override bool isSupport => true;
     public override void Proccess() // Ghi đè PT Proccess
