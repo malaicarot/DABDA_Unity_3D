@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Item
+  - Hammer
+  - LastScene
+  - ItemInMap
+  - TriggerLimit
+  - Cinemachine Target
+  - Torus
   layers:
   - Default
   - TransparentFX

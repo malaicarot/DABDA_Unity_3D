@@ -486,13 +486,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4369565079921735804, guid: 734b7fed4fefe564f8355430d1c4b338,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.6704
+      objectReference: {fileID: 0}
+    - target: {fileID: 4369565079921735804, guid: 734b7fed4fefe564f8355430d1c4b338,
+        type: 3}
       propertyPath: m_LocalPosition.x
-      value: 501
+      value: 501.06
       objectReference: {fileID: 0}
     - target: {fileID: 4369565079921735804, guid: 734b7fed4fefe564f8355430d1c4b338,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 219
+      value: 480
       objectReference: {fileID: 0}
     - target: {fileID: 4369565079921735804, guid: 734b7fed4fefe564f8355430d1c4b338,
         type: 3}
@@ -651,6 +656,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TriggerLoadScene_4
       objectReference: {fileID: 0}
+    - target: {fileID: 2744464633169545174, guid: d51f8f5a02bb6464bb5bf83231dd4399,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 3184784469451914147, guid: d51f8f5a02bb6464bb5bf83231dd4399,
         type: 3}
       propertyPath: m_Name
@@ -800,6 +810,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2368158539603977881, guid: 7211dd799e95df14d9f5b5e3e8eabfab,
+        type: 3}
+      propertyPath: m_TagString
+      value: Respawn
       objectReference: {fileID: 0}
     - target: {fileID: 2414239869324539692, guid: 7211dd799e95df14d9f5b5e3e8eabfab,
         type: 3}
@@ -974,6 +989,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6625955311355520747, guid: bb22c7c24599659459c7f4bf49bc2797,
+        type: 3}
+      propertyPath: rotateSpeed
+      value: 315
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4657,6 +4677,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525898265734546581, guid: 001c2b2844c3b1e45a1de49d1ae88673,
+        type: 3}
+      propertyPath: m_TagString
+      value: Torus
       objectReference: {fileID: 0}
     - target: {fileID: 8902469055770346246, guid: 001c2b2844c3b1e45a1de49d1ae88673,
         type: 3}

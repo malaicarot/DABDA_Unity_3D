@@ -8,6 +8,6 @@ public class RoundaboutRotate : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(rotateSpeed, 0.0f, 0.0f, Space.Self);
+        transform.Rotate(rotateSpeed * Time.deltaTime, 0.0f, 0.0f, Space.Self);
     }
 }
