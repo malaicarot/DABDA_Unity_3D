@@ -5,10 +5,21 @@ using UnityEngine;
 public class ColliderSystem : MonoBehaviour
 {
     [SerializeField] float force = 20f;
-    void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("Player")){
-            PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
-            playerMovement.ApplyForce(force);
+    void OnTriggerEnter(Collider other)
+    {
+        PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
+
+        if (other.CompareTag("Player"))
+        {
+            if (gameObject.CompareTag("Torus"))
+            {
+                playerMovement.ApplyForce(force);
+            }
+            else
+            {
+                Vector3 knockbackDir = (other.transform.position - transform.position).normalized;
+                playerMovement.ApplyForceKnockBack(knockbackDir);
+            }
         }
     }
 }

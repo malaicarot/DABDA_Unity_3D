@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class RoundaboutRotate : MonoBehaviour
 {
+    [SerializeField] float rotateSpeed = 8f;
 
     void Update()
     {
-        transform.Rotate(8.0f, 0.0f, 0.0f, Space.Self);
+        transform.Rotate(rotateSpeed, 0.0f, 0.0f, Space.Self);
     }
 }

@@ -59,6 +59,10 @@ public class PlayerMovement : MonoBehaviour
     float _rotationVelocity;
     float _verticalVelocity;
     float _terminalVelocity = 53.0f;
+    Vector3 knockBackVelocity;
+    float knockBackTimer = 0f;
+    float knockBackForce = 20f;
+    float knockBackDuration = 0.3f;
     float _animationBlend;
     float _targetRotation = 0;
     public bool isLimitJump = false;
@@ -119,6 +123,16 @@ public class PlayerMovement : MonoBehaviour
     }
     void ProcessMover()
     {
+        if (knockBackTimer > 0)
+        {
+            knockBackTimer -= Time.deltaTime;
+        }
+        else
+        {
+            knockBackVelocity = Vector3.zero;
+        }
+
+        ////
         float targetSpeed = _input.sprint ? sprintSpeed : moveSpeed;
 
         if (_input.move == Vector2.zero)
@@ -157,7 +171,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
         Vector3 targetDirection = Quaternion.Euler(0, _targetRotation, 0) * Vector3.forward;
-        _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0, _verticalVelocity, 0) * Time.deltaTime);
+        _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) + (new Vector3(0, _verticalVelocity, 0) + knockBackVelocity) * Time.deltaTime);
 
         if (_hasAnimator)
         {
@@ -246,6 +260,17 @@ public class PlayerMovement : MonoBehaviour
         _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BotClamp, TopClamp);
 
         CinemachineTarget.transform.rotation = Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride, _cinemachineTargetYaw, 0);
+    }
+
+    public void ApplyForceKnockBack(Vector3 direction) // luc cho trap
+    {
+        knockBackVelocity = direction.normalized * knockBackForce;
+        knockBackTimer = knockBackDuration;
+
+    }
+    public void ApplyForce(float force) // Luc cho bo day
+    {
+        _verticalVelocity = force;
     }
 
     float ClampAngle(float lfAngle, float lfMin, float lfMax)
@@ -343,11 +368,5 @@ public class PlayerMovement : MonoBehaviour
         cinemachineVirtualCamera.m_Lens.FieldOfView = toFOV;
         loadScene.LoadEndScene();
     }
-
-    public void ApplyForce(float force)
-    {
-        _verticalVelocity = force;
-    }
-
 
 }
