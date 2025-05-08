@@ -11,7 +11,8 @@ public class ItemsPool : ObjectPool
         SingleTonItemsPool = this;
     }
 
-    public MarkPool GetItem(string name, Vector3 position, Quaternion quaternion){
+    public MarkPool GetItem(string name, Vector3 position, Quaternion quaternion)
+    {
         PooledObject objOfPool = SingleTonItemsPool.GetPooledObject(name);
         MarkPool item = objOfPool.GetComponent<MarkPool>();
         item.transform.position = position;

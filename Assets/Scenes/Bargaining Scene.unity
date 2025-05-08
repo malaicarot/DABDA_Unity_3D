@@ -2142,7 +2142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a4c97f6afc54346afc4b58bac95663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playableDirector: {fileID: 2010428047}
+  playableDirector:
+  - {fileID: 0}
 --- !u!320 &1253695660
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -2734,7 +2735,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a4c97f6afc54346afc4b58bac95663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playableDirector: {fileID: 2010428047}
+  playableDirector:
+  - {fileID: 2010428047}
 --- !u!1 &2051297709 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0da1c34cc3308ee4ca9a854bb119ebea,

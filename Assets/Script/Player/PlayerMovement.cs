@@ -332,7 +332,14 @@ public class PlayerMovement : MonoBehaviour
 
     public void Floating()
     {
+        StartCoroutine(WaitForEndAnimation());
+    }
+
+    IEnumerator WaitForEndAnimation()
+    {
         _animator.SetBool("Floating", true);
+        yield return new WaitForSeconds(3);
+        _animator.SetBool("Floating", false);
     }
 
     public void StartCrushing()

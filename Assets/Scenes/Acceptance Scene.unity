@@ -3307,12 +3307,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106309892}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15a4c97f6afc54346afc4b58bac95663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playableDirector: {fileID: 106309895}
+  playableDirector:
+  - {fileID: 0}
 --- !u!320 &106309895
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -24762,12 +24763,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 693702927}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15a4c97f6afc54346afc4b58bac95663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playableDirector: {fileID: 693702930}
+  playableDirector:
+  - {fileID: 0}
 --- !u!320 &693702930
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -35951,6 +35953,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 992315927}
+  - component: {fileID: 992315928}
   m_Layer: 0
   m_Name: TimeLine
   m_TagString: Untagged
@@ -35977,6 +35980,23 @@ Transform:
   - {fileID: 106309893}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &992315928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992315926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a4c97f6afc54346afc4b58bac95663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playableDirector:
+  - {fileID: 693702930}
+  - {fileID: 1353179978}
+  - {fileID: 1471927518}
+  - {fileID: 106309895}
 --- !u!1 &996681942
 GameObject:
   m_ObjectHideFlags: 0
@@ -49172,12 +49192,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353179975}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15a4c97f6afc54346afc4b58bac95663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playableDirector: {fileID: 1353179978}
+  playableDirector:
+  - {fileID: 0}
 --- !u!320 &1353179978
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -54130,7 +54151,7 @@ PlayableDirector:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1471927516}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 8a7ee88aa146ea6499cb8d7de196c6ee, type: 2}
   m_InitialState: 0
@@ -54154,7 +54175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a4c97f6afc54346afc4b58bac95663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playableDirector: {fileID: 0}
+  playableDirector:
+  - {fileID: 0}
 --- !u!1001 &1473109005
 PrefabInstance:
   m_ObjectHideFlags: 0

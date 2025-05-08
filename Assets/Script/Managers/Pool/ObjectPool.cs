@@ -39,6 +39,7 @@ public class ObjectPool : MonoBehaviour
     {
         if (string.IsNullOrEmpty(objType) || !poolDictionary.ContainsKey(objType))
         {
+            Debug.Log("This object name is not exits to get!");
             return null;
         }
         if (poolDictionary[objType].Count == 0)

@@ -25,8 +25,6 @@ public class ChrysanthemumAbility : ItemAbility
 
     public override bool isSupport => false;
 
-
-
     public override void Proccess() // Ghi đè PT Proccess
     {
         GameObject waterGem = GameObject.Find("WaterGem");
@@ -116,13 +114,13 @@ public class WaterGemAbility : ItemAbility
         Camera camera1 = mirror.GetComponentInChildren<Camera>();
         GameObject player = GameObject.Find("Player");
         PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
-        GameObject timeLine = GameObject.Find("MasterTimeline");
+        GameObject timeLine = GameObject.Find("MasterTimeLine");
         TimelineController timelineController = timeLine.GetComponent<TimelineController>();
 
         if (camera1.enabled == true)
         {
             playerMovement.Floating();
-            timelineController.PlayTimeline();
+            timelineController.PlayTimeline(0);
         }
     }
 }
@@ -150,7 +148,7 @@ public class LavaGemAbility : ItemAbility
             ParticleSystem particleSystem = item.gameObject.GetComponentInChildren<ParticleSystem>();
             if (particleSystem.isPlaying && torchParticleSystem.isPlaying)
             {
-                timelineController.PlayTimeline();
+                timelineController.PlayTimeline(1);
                 Debug.Log("Done");
             }
         }
@@ -257,7 +255,7 @@ public class AngleStatueAbility : ItemAbility
         abilityItems.CheckPoint();
         GameObject timeline = GameObject.Find("GemTimeLine");
         TimelineController timelineController = timeline.GetComponent<TimelineController>();
-        timelineController.PlayTimeline();
+        timelineController.PlayTimeline(0);
     }
 }
 
@@ -337,7 +335,6 @@ public class MirrorGhostAbility : ItemAbility
 
     }
 }
-
 public class StonePedestalAbility : ItemAbility
 {
     public override string itemName => "StonePedestal"; // Ghi đè PT itemName
@@ -361,7 +358,7 @@ public class StonePedestalAbility : ItemAbility
         {
             pointLight.gameObject.SetActive(true);
             lightGemGlow.gameObject.SetActive(true);
-            timelineController.PlayTimeline();
+            timelineController.PlayTimeline(0);
             mirrorGhost.gameObject.SetActive(false);
             ghosts.gameObject.SetActive(false);
         }
@@ -378,8 +375,6 @@ public class WoodGemAbility : ItemAbility
         Debug.Log("WoodGem!");
     }
 }
-
-
 public class LakeAbility : ItemAbility
 {
     public override string itemName => "Lake"; // Ghi đè PT itemName
@@ -406,7 +401,6 @@ public class LakeAbility : ItemAbility
     }
 }
 
-
 /*Map 5*/
 public class WaterAbility : ItemAbility
 {
@@ -426,13 +420,14 @@ public class WaterAbility : ItemAbility
         TimelineController timelineController = timeline.GetComponent<TimelineController>();
         if (waterGem != null)
         {
-            timelineController.PlayTimeline();
+            timelineController.PlayTimeline(0);
             waterChild.gameObject.SetActive(true);
             abilityItems.RemoveData("WaterGem");
             waterGem.SetActive(false);
         }
     }
 }
+
 public class GrowthUpAbility : ItemAbility
 {
     public override string itemName => "GrowthUp"; // Ghi đè PT itemName
@@ -454,13 +449,14 @@ public class GrowthUpAbility : ItemAbility
         if (woodGem != null && water != null)
         {
             gemMove.gameObject.SetActive(true);
-            timelineController.PlayTimeline();
+            timelineController.PlayTimeline(3);
             child.gameObject.SetActive(true);
             abilityItems.RemoveData("WoodGem");
             woodGem.SetActive(false);
         }
     }
 }
+
 public class FirePedestalAbility : ItemAbility
 {
     public override string itemName => "FirePedestal"; // Ghi đè PT itemName
@@ -481,7 +477,7 @@ public class FirePedestalAbility : ItemAbility
         if (lavaGem != null)
         {
             gemMove.gameObject.SetActive(true);
-            timelineController.PlayTimeline();
+            timelineController.PlayTimeline(1);
             abilityItems.RemoveData("LavaGem");
             lavaGem.SetActive(false);
             foreach (twinkle child in fire)
@@ -515,7 +511,7 @@ public class GravelAbility : ItemAbility
         TimelineController timelineController = timeline.GetComponent<TimelineController>();
         if(lightGem != null && waterGem != null && lavaGem != null && woodGem != null){
             lightGemMove.gameObject.SetActive(true);
-            timelineController.PlayTimeline();
+            timelineController.PlayTimeline(2);
             abilityItems.RemoveData("LightGem");
             lightGem.SetActive(false);
             soulEffect.PlayParticle();
@@ -554,14 +550,11 @@ public class AbilityItems
     }
 }
 
-
-
-
 /*Tạo lớp Factory để quản lý và tạo các đối tượng kế thừa "ItemAbility"*/
 public static class AbilityFactory
 {
     static Dictionary<string, Type> abilitiesByName; // Lưu các tên và loại của các chức năng
-    static bool isInitialized => abilitiesByName != null;
+    static bool isInitialized => abilitiesByName != null; // Kiểm tra abilitiesByName đã được tạo hay chưa
 
     static void InitializeFactory() // PT tìm các lớp con hiện tại, khởi tạo và lưu vào Dictionary
     {
@@ -569,6 +562,7 @@ public static class AbilityFactory
         {
             return;
         }
+        
         var abilitiesType = Assembly.GetAssembly(typeof(ItemAbility)).GetTypes(). // Tìm các assembly hiện tại của "ItemAbility"
         Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(ItemAbility))); // Nếu như nó là lớp và không phải lớp trừu tượng và lớp con của "ItemAbility"
 

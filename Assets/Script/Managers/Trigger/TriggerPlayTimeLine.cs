@@ -9,7 +9,7 @@ public class TriggerPlayTimeLine : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            timeline.PlayTimeline();
+            timeline.PlayTimeline(0);
         }
     }
 }

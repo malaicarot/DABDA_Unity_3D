@@ -3,26 +3,30 @@ using UnityEngine;
 
 public class TimelineController : MonoBehaviour
 {
-    public PlayableDirector playableDirector;
+    public PlayableDirector[] playableDirector;
     void Start()
     {
         if (playableDirector == null)
         {
-            playableDirector = GetComponent<PlayableDirector>();
+            playableDirector = GetComponents<PlayableDirector>();
+            
         }
+        DontDestroyOnLoad(this.gameObject);
     }
 
-    public void PlayTimeline()
+    public void PlayTimeline(int index)
     {
         if (playableDirector != null)
         {
-            playableDirector.Play();
+            playableDirector[index].Play();
         }
     }
 
-    public void StopTimeline(){
-        if(playableDirector != null){
-            playableDirector.Stop();
+    public void StopTimeline(int index)
+    {
+        if (playableDirector != null)
+        {
+            playableDirector[index].Stop();
         }
     }
 }
