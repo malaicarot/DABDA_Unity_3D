@@ -102,6 +102,29 @@ public class MirrorAbility : ItemAbility
     }
 }
 
+public class SmallLake : ItemAbility
+{
+    public override string itemName => "SmallLake"; // Ghi đè PT itemName
+    public override string description => "Nó có thể rửa trôi mọi thứ?";
+
+
+    public override bool isSupport => false;
+    public override void Proccess() // Ghi đè PT Proccess
+    {
+        AbilityItems abilityItems = new AbilityItems();
+        abilityItems.CheckPoint();
+        GameObject smallLake = GameObject.Find(itemName);
+        GameObject waterGem = GameObject.Find("WaterGem");
+        WaterWave waterWave = smallLake.GetComponentInChildren<WaterWave>();
+        MeshRenderer meshRenderer = waterWave.gameObject.GetComponent<MeshRenderer>();
+
+        if(waterGem != null){
+            meshRenderer.enabled = true;
+        }
+
+    }
+}
+
 public class WaterGemAbility : ItemAbility
 {
     public override string itemName => "WaterGem"; // Ghi đè PT itemName
